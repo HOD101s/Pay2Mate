@@ -25,8 +25,6 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         DBConnect.connect();
-        genPriKey();
-        genPubKey();
         launch(args);
         DBConnect.disconnect();
     }

@@ -8,7 +8,7 @@ public class DBmethods {
     public static int genPubKey(){
         int pubkey = (int)(Math.random()*((999999-100000 + 1))+100000);
 
-        String query = String.format("SELECT * from `users` WHERE `Public Key` = '%d'",pubkey);
+        String query = String.format("SELECT * from `users` WHERE `publickey` = '%d'",pubkey);
         try{
             ResultSet set =
                     DBConnect.getStatement()
@@ -20,15 +20,14 @@ public class DBmethods {
         }catch (SQLException e){
             e.printStackTrace();
         }
-       // return pubkey;
-        System.out.println(pubkey);
-        return 0;
+       return pubkey;
 
     }
 
     public static int genPriKey(){
-        int prikey = (int)(Math.random()*((999999-100000 + 1))+100000);
-        String query = String.format("SELECT * from `sessionTable` WHERE `Private Key` = '%d'",prikey);
+        int pubkey = (int)(Math.random()*((999999-100000 + 1))+100000);
+
+        String query = String.format("SELECT * from `users` WHERE `publickey` = '%d'",pubkey);
         try{
             ResultSet set =
                     DBConnect.getStatement()
@@ -36,13 +35,11 @@ public class DBmethods {
             if(set.next()){
                 return genPubKey();
             }
-            //set.close();
+            set.close();
         }catch (SQLException e){
             e.printStackTrace();
         }
-        //return prikey;
-        System.out.println(prikey);
-        return 0;
+        return pubkey;
     }
 
 

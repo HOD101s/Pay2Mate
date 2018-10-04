@@ -20,9 +20,6 @@ import java.sql.SQLException;
 public class HomeController {
 
     @FXML
-    private AnchorPane root;
-
-    @FXML
     private Label homeUser;
 
     @FXML
@@ -146,7 +143,6 @@ public class HomeController {
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
-
     }
 
     @FXML

@@ -31,12 +31,6 @@ public class LoginController {
     private PasswordField password;
 
     @FXML
-    private Button login;
-
-    @FXML
-    private Button register;
-
-    @FXML
     private Label status;
 
     static String loggeduser;
@@ -68,7 +62,6 @@ public class LoginController {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-
                 }else{
                     status.setText("Incorrect username or password");
                 }
@@ -83,7 +76,7 @@ public class LoginController {
     void onRegister(ActionEvent event) throws IOException {
         Stage registerStage = Main.stage;
         registerStage.setTitle("Register");
-        root = FXMLLoader.load(getClass().getResource("/walletData/fxml/register.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/walletData/fxml/register.fxml"));
         registerStage.setScene(new Scene(root));
         registerStage.setResizable(false);
         registerStage.show();

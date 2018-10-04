@@ -38,10 +38,10 @@
             <Font size="32.0" />
          </font>
       </Label>
-      <TextField fx:id="regusername" promptText="UserName" style="-fx-font-weight: 20;" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+      <TextField fx:id="regname" promptText="UserName" style="-fx-font-weight: 20;" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
       <PasswordField fx:id="regconpassword" promptText="Confirm PassCode" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="4" />
-      <Button fx:id="register" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#newRegister" prefHeight="33.0" prefWidth="124.0" style="-fx-border-color: white; -fx-background-color: #d9f442;" text="Register" textFill="WHITE" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-      <Button fx:id="backToLogin" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#backToLogin" style="-fx-border-color: white; -fx-background-color: #d9f442;" text="Back2Login" textFill="WHITE" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+      <Button fx:id="register" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#newRegister" prefHeight="33.0" prefWidth="124.0" style="-fx-border-color: white; -fx-background-color: #d9f442;" text="Register" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+      <Button fx:id="backToLogin" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#backToLogin" style="-fx-border-color: white; -fx-background-color: #d9f442;" text="Back2Login" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
       <ImageView fitHeight="293.0" fitWidth="285.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="3">
          <image>
             <Image url="@../images/walletlogo.png" />

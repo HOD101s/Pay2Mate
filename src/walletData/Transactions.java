@@ -23,7 +23,6 @@ public class Transactions {
             }else{
               return 0;
             }
-            //set.close();
         }catch (SQLException e){
             e.printStackTrace();
         }
@@ -42,7 +41,6 @@ public class Transactions {
             }else{
                 return 2;
             }
-            //set.close();
         }catch (SQLException e){
             e.printStackTrace();
         }

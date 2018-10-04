@@ -14,6 +14,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 
 public class RegisterController {
@@ -21,7 +22,10 @@ public class RegisterController {
     private GridPane root;
 
     @FXML
-    static TextField regusername;
+    private TextField regname;
+
+    @FXML
+    private PasswordField regpassword;
 
     @FXML
     private PasswordField regconpassword;
@@ -31,9 +35,6 @@ public class RegisterController {
 
     @FXML
     private Button backToLogin;
-
-    @FXML
-    private PasswordField regpassword;
 
     @FXML
     private Label publickeyLabel;
@@ -46,22 +47,19 @@ public class RegisterController {
 
     @FXML
     public void newRegister() {
-        String username = regusername.getText();
-        String password = regpassword.getText();
-        String confpassword = regconpassword.getText();
 
-        if (username.isEmpty() || password.isEmpty() || confpassword.isEmpty()) {
+        if (regname.getText().isEmpty() || regpassword.getText().isEmpty() || regconpassword.getText().isEmpty()) {
             publickeyLabel.setText("Fields cannot be empty");
-        } else if (!password.equals(confpassword)) {
+        } else if (!regpassword.getText().equals(regconpassword.getText())) {
             publickeyLabel.setText("Passwords do not match");
-        } else if (doesUserExist(username)) {
+        } else if (doesUserExist(regname.getText())) {
             publickeyLabel.setText("User already exists");
         } else {
-            registerUser(username, password);
+            registerUser(regname.getText(), regpassword.getText());
         }
     }
 
-    boolean doesUserExist(String username) {
+    private boolean doesUserExist(String username) {
         boolean found = false;
         try {
             String query = String.format("SELECT * FROM `users` WHERE username = '%s';", username);
@@ -72,15 +70,14 @@ public class RegisterController {
         return found;
     }
 
-    void registerUser(String username, String password) {
+    private void registerUser(String username, String password) {
         try {
-
             int pubkey = DBmethods.genPubKey();
             int prikey = DBmethods.genPriKey();
-            String insert = String.format("INSERT INTO `users`(`username`, `password`,`balance`,`publickey`,`privatekey`) VALUES ('%s','%s','%d','%d','%d')", username, password,1000,pubkey,prikey); //change table name
+            String insert = String.format("INSERT INTO `users`(`username`, `password`, `balance`, `publickey`, `privatekey`) VALUES ('%s','%s','%d','%d','%d')", username, password,10000,pubkey,prikey); //change table name
             DBConnect.getStatement().executeUpdate(insert);
 
-            createtransactiontable();
+            createtransactiontable(regname.getText());
 
             usernameLabel.setText(String.format(("Welcome %s"),username));
             publickeyLabel.setText(String.format(("Public Key : %d"),pubkey));
@@ -91,9 +88,10 @@ public class RegisterController {
         }
     }
 
-    public static void createtransactiontable(){
+    private static void createtransactiontable(String user){
         try {
-            String tablequery = String.format("CREATE TABLE %s (TransactionIDs varchar(255));",regusername.getText()); //add fields
+            System.out.println("Entered createtransactiontable");
+            String tablequery = "CREATE TABLE  "+user+"(TransactionIDs VARCHAR(255))"; //add fields
             DBConnect.getStatement().executeUpdate(tablequery);
         } catch (SQLException e){
             e.printStackTrace();

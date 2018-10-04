@@ -68,15 +68,19 @@ public class Transactions {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        sendamount = send;
+        return true;
     }
 
     public static boolean removeMoney(){
         String query = String.format("UPDATE `` SET `balance` = '%d' WHERE `Private Key` = '%d'",userBalance-sendamount,senderprivatekey);
         try {
             DBConnect.getStatement().executeUpdate(query);
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
 
@@ -84,6 +88,7 @@ public class Transactions {
         String query = String.format("UPDATE `` SET `balance` = 'balance + %d' WHERE `Public Key` = '%d'",sendamount,receiverpublickey);
         try {
             DBConnect.getStatement().executeUpdate(query);
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -76,9 +76,12 @@ public class Transactions {
 
 
     public static boolean addMoney(){
-
+        String query = String.format("UPDATE `` SET `balance` = 'balance + %d' WHERE `Public Key` = '%d'",sendamount,receiverpublickey);
+        try {
+            DBConnect.getStatement().executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-
-
-
+    
 }

@@ -25,8 +25,8 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        //DBConnect.connect();
+        DBConnect.connect();
         launch(args);
-        //DBConnect.disconnect();
+        DBConnect.disconnect();
     }
 }

@@ -21,7 +21,7 @@ public class RegisterController {
     private GridPane root;
 
     @FXML
-    private TextField regusername;
+    static TextField regusername;
 
     @FXML
     private PasswordField regconpassword;
@@ -87,9 +87,10 @@ public class RegisterController {
 
             createtransactiontable();
 
-            usernameLabel.setText(String.format("Welcome %s"),username);
-            publickeyLabel.setText(String.format("Public Key : %d"),pubkey);
-            privatekeyLabel.setText(String.format("Private Key : %d"),prikey);
+
+            usernameLabel.setText(String.format(("Welcome %s"),username));
+            publickeyLabel.setText(String.format(("Public Key : %d"),pubkey));
+            privatekeyLabel.setText(String.format(("Private Key : %d"),prikey));
 
 
         } catch (SQLException e) {
@@ -98,7 +99,7 @@ public class RegisterController {
     }
     public static void createtransactiontable(){
         try {
-            String tablequery = String.format("CREATE TABLE %s (TransactionIDs varchar(255));",username); //add fields
+            String tablequery = String.format("CREATE TABLE %s (TransactionIDs varchar(255));",regusername.getText()); //add fields
             DBConnect.getStatement().executeUpdate(tablequery);
         } catch (SQLException e){
             e.printStackTrace();

@@ -89,7 +89,7 @@ public class Transactions {
 
     public static String genTransID(){
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
         return String.format("%s%s%s%d", sdf.format(timestamp),senderprivatekey,receiverpublickey,sendamount);
     }
 }

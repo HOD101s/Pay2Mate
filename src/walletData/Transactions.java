@@ -99,7 +99,7 @@ public class Transactions {
             e.printStackTrace();
             bal = 00;
         }
-        String myquery = String.format("UPDATE `users` SET `balance` = '%d' WHERE `Public Key` = '%d'",bal+sendamount,receiverpublickey);
+        String myquery = String.format("UPDATE `users` SET `balance` = '%d' WHERE `publickey` = '%d'",bal+sendamount,receiverpublickey);
         try {
             DBConnect.getStatement().executeUpdate(myquery);
             return true;

@@ -30,7 +30,7 @@ public class LoginController {
                         DBConnect.getStatement()
                                 .executeQuery(query);
                 if(set.next()){
-//                    sessionTable();
+                    sessionTable();
                     status.setText("Logged in successfully");
                 }else{
                     status.setText("Incorrect username or password");
@@ -51,13 +51,13 @@ public class LoginController {
         registerStage.show();
     }
 
-//    public static void sessionTable(){
-//        try {
-//            String tablequery = String.format("INSERT INTO pay2mate.sessionTable SELECT username,  FROM pay2mate.users;"); //add fields
-//            DBConnect.getStatement().executeUpdate(tablequery);
-//        } catch (SQLException e){
-//            e.printStackTrace();
-//        }
-//    }
+    public static void sessionTable(){
+        try {
+            String tablequery = String.format("INSERT INTO pay2mate.sessionTable SELECT ,  FROM pay2mate.users;"); //add fields
+            DBConnect.getStatement().executeUpdate(tablequery);
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
 
 }

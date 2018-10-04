@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane hgap="10.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #16C5CC;" vgap="10.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="walletData.controllers.LoginController">
+<GridPane hgap="10.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #ededed;" vgap="10.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="walletData.controllers.LoginController">
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -38,13 +38,13 @@
          </font>
       </Label>
       <TextField fx:id="username" promptText="UserName" style="-fx-font-weight: 20;" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-      <PasswordField fx:id="password" promptText="PassCode" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="4" />
-      <Button fx:id="login" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onLogin" style="-fx-border-color: white; -fx-background-color: #d9f442;" text="Login" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-      <Button fx:id="register" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onRegister" style="-fx-border-color: white; -fx-background-color: #d9f442;" text="Register" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+      <PasswordField fx:id="password" promptText="PassCode" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="3" />
+      <Button fx:id="login" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onLogin" style="-fx-border-color: white; -fx-background-color: #d9f442;" text="Login" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+      <Button fx:id="register" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onRegister" style="-fx-border-color: white; -fx-background-color: #d9f442;" text="Register" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
       <Label style="-fx-font-family: Roboto; -fx-font-size: 38;" text="Welcome to Pay2Mate" GridPane.columnIndex="1" GridPane.columnSpan="6" GridPane.halignment="CENTER" />
       <ImageView fitHeight="293.0" fitWidth="285.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="3">
          <image>
-            <Image url="@../../../../../Desktop/Practice/College/OOPM%20Project/ewallet-500x500.png" />
+            <Image url="@../images/walletlogo.png" />
          </image>
       </ImageView>
    </children>

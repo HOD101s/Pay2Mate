@@ -105,7 +105,7 @@
                 <Font size="22.0" />
             </font>
         </Label>
-        <Label fx:id="trans3" layoutX="436.0" layoutY="405.0" prefHeight="32.0" prefWidth="153.0" text="Label">
+        <Label fx:id="trans4" layoutX="436.0" layoutY="405.0" prefHeight="32.0" prefWidth="153.0" text="Label">
             <font>
                 <Font size="22.0" />
             </font>
@@ -120,7 +120,7 @@
                 <Font size="22.0" />
             </font>
         </Label>
-        <Label fx:id="trans4" layoutX="434.0" layoutY="467.0" prefHeight="32.0" prefWidth="148.0" text="Label">
+        <Label fx:id="trans5" layoutX="434.0" layoutY="467.0" prefHeight="32.0" prefWidth="148.0" text="Label">
             <font>
                 <Font size="22.0" />
             </font>
@@ -151,7 +151,7 @@
                 <Font name="System Bold" size="26.0" />
             </font>
         </Label>
-        <Button fx:id="goToSend" layoutX="73.0" layoutY="455.0" mnemonicParsing="false" prefHeight="106.0" prefWidth="282.0" style="-fx-background-color: #32CD32;" text="Send">
+        <Button layoutX="73.0" layoutY="455.0" mnemonicParsing="false" onAction="#goToSend" prefHeight="106.0" prefWidth="282.0" style="-fx-background-color: #32CD32;" text="Send">
             <font>
                 <Font size="51.0" />
             </font>

@@ -8,18 +8,50 @@ import javafx.stage.Stage;
 import walletData.DBConnect;
 import walletData.DBmethods;
 import walletData.Main;
-
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import java.io.IOException;
 import java.sql.SQLException;
 
 public class RegisterController {
+    @FXML
+    private GridPane root;
+
+    @FXML
+    private TextField regusername;
+
+    @FXML
+    private PasswordField regconpassword;
+
+    @FXML
+    private Button register;
+
+    @FXML
+    private Button backToLogin;
+
+    @FXML
+    private PasswordField regpassword;
+
+    @FXML
+    private Label publickeyLabel;
+
+    @FXML
+    private Label privatekeyLabel;
+
+    @FXML
+    private Label usernameLabel;
+
+
 
     @FXML
     public void newRegister() {
 
         String username = regusername.getText();
         String password = regpassword.getText();
-        String confpassword = regconfpassword.getText();
+        String confpassword = regconpassword.getText();
 
         if (username.isEmpty() || password.isEmpty() || confpassword.isEmpty()) {
             publickeyLabel.setText("Fields cannot be empty");
@@ -31,6 +63,8 @@ public class RegisterController {
             registerUser(username, password);
         }
     }
+
+    
 
     void registerUser(String username, String password) {
         try {

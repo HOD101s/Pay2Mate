@@ -1,5 +1,6 @@
 package walletData.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,12 +9,73 @@ import javafx.stage.Stage;
 import walletData.DBConnect;
 import walletData.Main;
 import walletData.Transactions;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class HomeController {
+
+    @FXML
+    private AnchorPane root;
+
+    @FXML
+    private Label homeUser;
+
+    @FXML
+    private Label publicKey;
+
+    @FXML
+    private Label balance;
+
+    @FXML
+    private Label trans1;
+
+    @FXML
+    private Label rec1;
+
+    @FXML
+    private Label amt1;
+
+    @FXML
+    private Label trans2;
+
+    @FXML
+    private Label rec2;
+
+    @FXML
+    private Label amt2;
+
+    @FXML
+    private Label trans3;
+
+    @FXML
+    private Label rec3;
+
+    @FXML
+    private Label amt3;
+
+    @FXML
+    private Label rec4;
+
+    @FXML
+    private Label amt4;
+
+    @FXML
+    private Label trans4;
+
+    @FXML
+    private Label rec5;
+
+    @FXML
+    private Label amt5;
+
+    @FXML
+    private Label trans5;
+
 
     @FXML
     public void  initialize(){
@@ -58,7 +120,7 @@ public class HomeController {
     }
 
     @FXML
-    public void goToSend(){
+    public void goToSend(ActionEvent event) throws IOException{
         Stage sendMoneyStage  = Main.stage;
         Parent root = FXMLLoader.load(getClass().getResource("/walletData/fxml/sendVerification.fxml"));
         sendMoneyStage.setTitle("Hello World");
@@ -67,7 +129,7 @@ public class HomeController {
     }
 
     @FXML
-    public void openLogin() {
+    public void openLogin(ActionEvent event) throws IOException{
         try {
             Stage loginStage = Main.stage;
             root = FXMLLoader.load(getClass().getResource("/walletData/fxml/login.fxml"));

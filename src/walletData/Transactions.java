@@ -1,5 +1,7 @@
 package walletData;
 
+import com.mysql.cj.protocol.Resultset;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -89,7 +91,7 @@ public class Transactions {
         String query = String.format("SELECT `balance` from `users` WHERE `publickey` = '%d'",receiverpublickey);
 
         try {
-            myBal = DBConnect.getStatement().executeQuery(query);
+            ResultSet myBal = DBConnect.getStatement().executeQuery(query);
             myBal.next();
             balance = myBal.getInt("balance");
         } catch (SQLException e) {

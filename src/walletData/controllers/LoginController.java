@@ -15,6 +15,8 @@ import java.sql.SQLException;
 
 public class LoginController {
 
+    //Test Commit
+
     @FXML
     void onLogin(ActionEvent event) {
         String query = "SELECT * FROM `users` WHERE `username` = '%s' && `password` = '%s'";            //edit in our table name

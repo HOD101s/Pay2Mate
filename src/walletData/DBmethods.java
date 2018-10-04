@@ -20,7 +20,9 @@ public class DBmethods {
         }catch (SQLException e){
             e.printStackTrace();
         }
-        return pubkey;
+       // return pubkey;
+        System.out.println(pubkey);
+        return 0;
 
     }
 
@@ -33,13 +35,14 @@ public class DBmethods {
                             .executeQuery(query);
             if(set.next()){
                 return genPubKey();
-            }else{
-                return prikey;
             }
-            set.close();
+            //set.close();
         }catch (SQLException e){
             e.printStackTrace();
         }
+        //return prikey;
+        System.out.println(prikey);
+        return 0;
     }
 
 

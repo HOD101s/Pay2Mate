@@ -6,6 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import static walletData.DBmethods.*;
+
 public class Main extends Application {
     //Test push
 
@@ -23,6 +25,8 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         DBConnect.connect();
+        genPriKey();
+        genPubKey();
         launch(args);
         DBConnect.disconnect();
     }

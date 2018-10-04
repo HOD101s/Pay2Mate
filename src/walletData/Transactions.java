@@ -25,7 +25,7 @@ public class Transactions {
             }else{
               return 0;
             }
-            set.close();
+            //set.close();
         }catch (SQLException e){
             e.printStackTrace();
         }

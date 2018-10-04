@@ -64,6 +64,17 @@ public class RegisterController {
         }
     }
 
+    boolean doesUserExist(String username) {
+        boolean found = false;
+        try {
+            String query = String.format("SELECT * FROM `users` WHERE username = '%s';", username);
+            found = DBConnect.getStatement().executeQuery(query).next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return found;
+    }
+
     
 
     void registerUser(String username, String password) {

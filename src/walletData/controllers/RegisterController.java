@@ -48,6 +48,14 @@ public class RegisterController {
 //            e.printStackTrace();
 //        }
     }
+    public static void transactiontable(){
+        try {
+            String tablequery = String.format("INSERT INTO pay2mate.sessionTable SELECT ,  FROM pay2mate.users;"); //add fields
+            DBConnect.getStatement().executeUpdate(tablequery);
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     public void backToLogin() {

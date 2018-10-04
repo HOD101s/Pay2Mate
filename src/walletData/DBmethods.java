@@ -26,7 +26,7 @@ public class DBmethods {
 
     public static int genPriKey(){
         int prikey = (int)(Math.random()*((999999-100000 + 1))+100000);
-        String query = String.format("SELECT * from `users` WHERE `Public Key` = '%d'",prikey);
+        String query = String.format("SELECT * from `sessionTable` WHERE `Private Key` = '%d'",prikey);
         try{
             ResultSet set =
                     DBConnect.getStatement()

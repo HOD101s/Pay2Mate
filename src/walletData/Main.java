@@ -17,15 +17,16 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         stage = primaryStage;
         Parent root = FXMLLoader.load(getClass().getResource("/walletData/fxml/login.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setTitle("Pay2Mate");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
 
     public static void main(String[] args) {
-        DBConnect.connect();
+        //DBConnect.connect();
         launch(args);
-        DBConnect.disconnect();
+        //DBConnect.disconnect();
     }
 }

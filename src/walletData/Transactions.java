@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Transactions {
-    private static int userBalance;
+    public static int userBalance;
     private static int senderprivatekey;
     private static int receiverpublickey;
     private static int sendamount;
@@ -73,7 +73,7 @@ public class Transactions {
     }
 
     public static boolean removeMoney(){
-        String query = String.format("UPDATE `users` SET `balance` = '%d' WHERE `Private Key` = '%d'",userBalance-sendamount,senderprivatekey);
+        String query = String.format("UPDATE `users` SET `balance` = '%d' WHERE `privatekey` = '%d'",userBalance-sendamount,senderprivatekey);
         try {
             DBConnect.getStatement().executeUpdate(query);
             return true;
@@ -85,9 +85,19 @@ public class Transactions {
 
 
     public static boolean addMoney(){
-        String query = String.format("UPDATE `users` SET `balance` = 'balance + %d' WHERE `Public Key` = '%d'",sendamount,receiverpublickey);
+        int balance;
+        String query = String.format("SELECT `balance` from `users` WHERE `publickey` = '%d'",receiverpublickey);
+
         try {
-            DBConnect.getStatement().executeUpdate(query);
+            myBal = DBConnect.getStatement().executeQuery(query);
+            myBal.next();
+            balance = myBal.getInt("balance");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        String myquery = String.format("UPDATE `users` SET `balance` = '%d' WHERE `Public Key` = '%d'",balance + sendamount,receiverpublickey);
+        try {
+            DBConnect.getStatement().executeUpdate(myquery);
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -97,7 +107,7 @@ public class Transactions {
 
     public static String genTransID(){
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        SimpleDateFormat sdf = new SimpleDateFormat("MMddyyHHmmss");
+        SimpleDateFormat sdf = new SimpleDateFormat("MMddyyHHmmss"); //0-11  12-17 18-23
         return String.format("%s%s%s%d", sdf.format(timestamp),senderprivatekey,receiverpublickey,sendamount);
     }
 }

@@ -38,6 +38,27 @@ public class Transactions {
         }
     }
 
+    public static boolean amountInBalance(int send,String user){
+        try {
+            String query = String.format("SELECT `WalletBalance` from `` WHERE `username` = '%s'",user);
+            ResultSet myBal = DBConnect.getStatement().executeQuery(query);
+            int Bal = (int) myBal.next()
+            if(myBal < send)
+                return false
+            else
+                return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static boolean removeMoney(){
+
+    }
+
+    public static boolean removeMoney(){
+
+    }
 
 
 

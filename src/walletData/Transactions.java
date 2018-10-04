@@ -2,6 +2,9 @@ package walletData;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Transactions {
     private static int userBalance;
@@ -84,4 +87,9 @@ public class Transactions {
         }
     }
 
+    public static String genTransID(){
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+        return String.format("%s%s%s%d", sdf.format(timestamp),senderprivatekey,receiverpublickey,sendamount);
+    }
 }

@@ -55,7 +55,7 @@ public class Transactions {
             int balance = myBal.getInt("balance");
             userBalance = balance;
             if(balance<send)
-                return false
+                return false;
             else {
                 sendamount = send;
                 return true;
@@ -83,5 +83,5 @@ public class Transactions {
             e.printStackTrace();
         }
     }
-    
+
 }

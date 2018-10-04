@@ -15,13 +15,13 @@ public class DBmethods {
                             .executeQuery(query);
             if(set.next()){
                 return genPubKey();
-            }else{
-                return pubkey;
             }
             set.close();
         }catch (SQLException e){
             e.printStackTrace();
         }
+        return pubkey;
+
     }
 
     public static int genPriKey(){

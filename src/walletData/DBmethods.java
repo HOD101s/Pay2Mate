@@ -21,7 +21,6 @@ public class DBmethods {
             e.printStackTrace();
         }
        return pubkey;
-
     }
 
     public static int genPriKey(){
@@ -41,6 +40,4 @@ public class DBmethods {
         }
         return pubkey;
     }
-
-
 }

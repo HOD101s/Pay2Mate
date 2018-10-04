@@ -1,14 +1,9 @@
 package walletData;
 
-
-
-import walletData.controllers.LoginController;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class Transactions {
     public static int userBalance;
@@ -17,7 +12,6 @@ public class Transactions {
     private static int sendamount;
 
     public static int verification(int prikey ,String user , int pubkey){
-
         String priCheck = String.format("SELECT * from `users` WHERE `username` = '%s' && `privatekey` = '%d'",user,prikey);
         try{
             ResultSet set =
@@ -57,7 +51,6 @@ public class Transactions {
 
     public static boolean amountInBalance(int send,String user){
         try {
-
             String query = String.format("SELECT `balance` from `users` WHERE `username` = '%s'",user);
             ResultSet myBal = DBConnect.getStatement().executeQuery(query);
             myBal.next();
@@ -86,7 +79,6 @@ public class Transactions {
         }
         return false;
     }
-
 
     public static boolean addMoney(){
         int bal;

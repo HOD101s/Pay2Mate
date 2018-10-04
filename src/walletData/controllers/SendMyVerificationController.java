@@ -1,6 +1,5 @@
 package walletData.controllers;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,10 +12,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-
 import java.io.IOException;
 import java.sql.SQLException;
-
 
 public class SendMyVerificationController {
     @FXML
@@ -75,6 +72,5 @@ public class SendMyVerificationController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 }

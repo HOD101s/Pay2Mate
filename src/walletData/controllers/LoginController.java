@@ -1,6 +1,5 @@
 package walletData.controllers;
 
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,8 +20,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class LoginController {
-
-
 
     @FXML
     static GridPane root;
@@ -82,15 +79,6 @@ public class LoginController {
         }
     }
 
-//    public void openHome() throws IOException{
-//        Stage homeStage = Main.stage;
-//        root = FXMLLoader.load(getClass().getResource("/walletData/fxml/home.fxml"));
-//        homeStage.setTitle(loggeduser);
-//        homeStage.setScene(new Scene(root));
-//        homeStage.setResizable(false);
-//        homeStage.show();
-//    }
-
     @FXML
     void onRegister(ActionEvent event) throws IOException {
         Stage registerStage = Main.stage;
@@ -100,6 +88,4 @@ public class LoginController {
         registerStage.setResizable(false);
         registerStage.show();
     }
-
-
 }

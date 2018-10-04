@@ -76,7 +76,6 @@ public class HomeController {
     @FXML
     private Label trans5;
 
-
     @FXML
     public void  initialize(){
         String bal;

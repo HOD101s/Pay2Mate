@@ -9,7 +9,6 @@ import javafx.stage.Stage;
 import static walletData.DBmethods.*;
 
 public class Main extends Application {
-    //Test push
 
     public static Stage stage;
 
@@ -22,7 +21,6 @@ public class Main extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
     }
-
 
     public static void main(String[] args) {
         DBConnect.connect();

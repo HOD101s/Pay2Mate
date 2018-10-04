@@ -44,11 +44,8 @@ public class RegisterController {
     @FXML
     private Label usernameLabel;
 
-
-
     @FXML
     public void newRegister() {
-
         String username = regusername.getText();
         String password = regpassword.getText();
         String confpassword = regconpassword.getText();
@@ -75,8 +72,6 @@ public class RegisterController {
         return found;
     }
 
-    
-
     void registerUser(String username, String password) {
         try {
 
@@ -87,16 +82,15 @@ public class RegisterController {
 
             createtransactiontable();
 
-
             usernameLabel.setText(String.format(("Welcome %s"),username));
             publickeyLabel.setText(String.format(("Public Key : %d"),pubkey));
             privatekeyLabel.setText(String.format(("Private Key : %d"),prikey));
-
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
     public static void createtransactiontable(){
         try {
             String tablequery = String.format("CREATE TABLE %s (TransactionIDs varchar(255));",regusername.getText()); //add fields

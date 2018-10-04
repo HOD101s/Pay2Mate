@@ -1,6 +1,8 @@
 package walletData;
 
-import com.mysql.cj.protocol.Resultset;
+
+
+import walletData.controllers.LoginController;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -87,17 +89,17 @@ public class Transactions {
 
 
     public static boolean addMoney(){
-        int balance;
-        String query = String.format("SELECT `balance` from `users` WHERE `publickey` = '%d'",receiverpublickey);
-
-        try {
-            ResultSet myBal = DBConnect.getStatement().executeQuery(query);
-            myBal.next();
-            balance = myBal.getInt("balance");
-        } catch (SQLException e) {
+        int bal;
+        try{
+            String querybal = String.format("SELECT `balance` FROM `users` WHERE `publickey` = '%s'", receiverpublickey);
+            ResultSet mysetbal = DBConnect.getStatement().executeQuery(querybal);
+            mysetbal.next();
+            bal = mysetbal.getInt("balance");
+        }catch(SQLException e){
             e.printStackTrace();
+            bal = 00;
         }
-        String myquery = String.format("UPDATE `users` SET `balance` = '%d' WHERE `Public Key` = '%d'",balance + sendamount,receiverpublickey);
+        String myquery = String.format("UPDATE `users` SET `balance` = '%d' WHERE `Public Key` = '%d'",bal+sendamount,receiverpublickey);
         try {
             DBConnect.getStatement().executeUpdate(myquery);
             return true;

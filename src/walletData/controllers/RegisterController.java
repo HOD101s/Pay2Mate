@@ -53,7 +53,7 @@ public class RegisterController {
     public void backToLogin() {
 //        try {
 //            Stage loginStage = Main.stage;
-//            Parent root = FXMLLoader.load(getClass().getResource("/com/stacks/iws/res/login.fxml"));
+//            Parent root = FXMLLoader.load(getClass().getResource("/walletData/fxml/login.fxml"));
 //            loginStage.setTitle("Login");
 //            loginStage.setScene(new Scene(root));
 //            loginStage.setResizable(false);

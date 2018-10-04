@@ -14,7 +14,7 @@ public class Transactions {
 
     public static int verification(int prikey ,String user , int pubkey){
 
-        String priCheck = String.format("SELECT * from `` WHERE `username` = '%s' `Private Key` = '%d'",user,prikey);
+        String priCheck = String.format("SELECT * from `users` WHERE `username` = '%s' && `privatekey` = '%d'",user,prikey);
         try{
             ResultSet set =
                     DBConnect.getStatement()
@@ -29,10 +29,11 @@ public class Transactions {
         }catch (SQLException e){
             e.printStackTrace();
         }
+        return 0;
     }
 
     public static int pubkeyCheck(int pubkey){
-        String pubCheck = String.format("SELECT * from `` WHERE `Public Key` = '%d'",pubkey);
+        String pubCheck = String.format("SELECT * from `users` WHERE `publickey` = '%d'",pubkey);
         try{
             ResultSet set =
                     DBConnect.getStatement()
@@ -43,10 +44,11 @@ public class Transactions {
             }else{
                 return 2;
             }
-            set.close();
+            //set.close();
         }catch (SQLException e){
             e.printStackTrace();
         }
+        return 2;
     }
 
     public static boolean amountInBalance(int send,String user){

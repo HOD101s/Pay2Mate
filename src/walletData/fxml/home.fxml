@@ -50,128 +50,128 @@
                 <Font size="44.0" />
             </font>
         </Label>
-        <Label layoutX="427.0" layoutY="165.0" text="Transaction ID">
+        <Label layoutX="409.0" layoutY="165.0" text="Transaction ID">
             <font>
                 <Font name="System Bold" size="25.0" />
             </font>
         </Label>
-        <Label layoutX="673.0" layoutY="163.0" text="Receiver">
+        <Label layoutX="747.0" layoutY="163.0" text="Receiver">
             <font>
                 <Font name="System Bold" size="28.0" />
             </font>
         </Label>
-        <Label fx:id="trans1" layoutX="432.0" layoutY="231.0" prefHeight="32.0" prefWidth="143.0">
+        <Label fx:id="trans1" layoutX="368.0" layoutY="234.0" prefHeight="34.0" prefWidth="253.0" text="1234567890123456">
+            <font>
+                <Font size="23.0" />
+            </font>
+        </Label>
+        <Label fx:id="rec1" layoutX="757.0" layoutY="235.0" prefHeight="32.0" prefWidth="87.0">
             <font>
                 <Font size="22.0" />
             </font>
         </Label>
-        <Label fx:id="rec1" layoutX="627.0" layoutY="233.0" prefHeight="32.0" prefWidth="222.0">
+        <Label fx:id="amt1" layoutX="875.0" layoutY="233.0" prefHeight="32.0" prefWidth="101.0">
             <font>
                 <Font size="22.0" />
             </font>
         </Label>
-        <Label fx:id="amt1" layoutX="872.0" layoutY="233.0" prefHeight="32.0" prefWidth="101.0">
+        <Label fx:id="trans2" layoutX="375.0" layoutY="295.0" prefHeight="32.0" prefWidth="253.0">
             <font>
                 <Font size="22.0" />
             </font>
         </Label>
-        <Label fx:id="trans2" layoutX="434.0" layoutY="293.0" prefHeight="32.0" prefWidth="153.0">
+        <Label fx:id="rec2" layoutX="761.0" layoutY="297.0" prefHeight="32.0" prefWidth="87.0">
             <font>
                 <Font size="22.0" />
             </font>
         </Label>
-        <Label fx:id="rec2" layoutX="629.0" layoutY="295.0" prefHeight="32.0" prefWidth="212.0">
+        <Label fx:id="amt2" layoutX="877.0" layoutY="295.0" prefHeight="32.0" prefWidth="101.0">
             <font>
                 <Font size="22.0" />
             </font>
         </Label>
-        <Label fx:id="amt2" layoutX="874.0" layoutY="295.0" prefHeight="32.0" prefWidth="101.0">
+        <Label fx:id="trans3" layoutX="368.0" layoutY="355.0" prefHeight="32.0" prefWidth="253.0">
             <font>
                 <Font size="22.0" />
             </font>
         </Label>
-        <Label fx:id="trans3" layoutX="434.0" layoutY="351.0" prefHeight="32.0" prefWidth="153.0">
+        <Label fx:id="rec3" layoutX="763.0" layoutY="355.0" prefHeight="32.0" prefWidth="87.0">
             <font>
                 <Font size="22.0" />
             </font>
         </Label>
-        <Label fx:id="rec3" layoutX="631.0" layoutY="353.0" prefHeight="32.0" prefWidth="212.0">
+        <Label fx:id="amt3" layoutX="877.0" layoutY="353.0" prefHeight="32.0" prefWidth="109.0">
             <font>
                 <Font size="22.0" />
             </font>
         </Label>
-        <Label fx:id="amt3" layoutX="874.0" layoutY="353.0" prefHeight="32.0" prefWidth="109.0">
+        <Label fx:id="trans4" layoutX="368.0" layoutY="407.0" prefHeight="32.0" prefWidth="253.0">
             <font>
                 <Font size="22.0" />
             </font>
         </Label>
-        <Label fx:id="trans4" layoutX="436.0" layoutY="405.0" prefHeight="32.0" prefWidth="153.0">
+        <Label fx:id="rec4" layoutX="757.0" layoutY="407.0" prefHeight="32.0" prefWidth="87.0">
             <font>
                 <Font size="22.0" />
             </font>
         </Label>
-        <Label fx:id="rec4" layoutX="631.0" layoutY="407.0" prefHeight="32.0" prefWidth="212.0">
+        <Label fx:id="amt4" layoutX="879.0" layoutY="407.0" prefHeight="32.0" prefWidth="109.0">
             <font>
                 <Font size="22.0" />
             </font>
         </Label>
-        <Label fx:id="amt4" layoutX="876.0" layoutY="407.0" prefHeight="32.0" prefWidth="109.0">
+        <Label fx:id="trans5" layoutX="375.0" layoutY="466.0" prefHeight="32.0" prefWidth="253.0">
             <font>
                 <Font size="22.0" />
             </font>
         </Label>
-        <Label fx:id="trans5" layoutX="434.0" layoutY="467.0" prefHeight="32.0" prefWidth="148.0">
+        <Label fx:id="rec5" layoutX="761.0" layoutY="471.0" prefHeight="32.0" prefWidth="87.0">
             <font>
                 <Font size="22.0" />
             </font>
         </Label>
-        <Label fx:id="rec5" layoutX="629.0" layoutY="469.0" prefHeight="32.0" prefWidth="222.0">
+        <Label fx:id="amt5" layoutX="877.0" layoutY="469.0" prefHeight="32.0" prefWidth="109.0">
             <font>
                 <Font size="22.0" />
             </font>
         </Label>
-        <Label fx:id="amt5" layoutX="874.0" layoutY="469.0" prefHeight="32.0" prefWidth="109.0">
-            <font>
-                <Font size="22.0" />
-            </font>
-        </Label>
-        <Line endX="580.0" endY="12.0" layoutX="412.0" layoutY="132.0" startY="12.0" />
-        <Line endX="580.0" endY="12.0" layoutX="412.0" layoutY="497.0" startY="12.0" />
-        <Line endX="580.0" endY="12.0" layoutX="412.0" layoutY="439.0" startY="12.0" />
-        <Line endX="580.0" endY="12.0" layoutX="410.0" layoutY="385.0" startY="12.0" />
-        <Line endX="580.0" endY="12.0" layoutX="412.0" layoutY="332.0" startY="12.0" />
-        <Line endX="580.0" endY="12.0" layoutX="410.0" layoutY="270.0" startY="12.0" />
-        <Line endX="580.0" endY="12.0" layoutX="412.0" layoutY="207.0" startY="12.0" />
-        <Line endX="72.5" endY="326.0" layoutX="339.0" layoutY="183.0" startX="72.5" startY="-39.0" />
+        <Line endX="580.0" endY="12.0" layoutX="412.0" layoutY="132.0" startX="-52.0" startY="13.5" />
+        <Line endX="580.0" endY="12.0" layoutX="412.0" layoutY="497.0" startX="-51.0" startY="14.5" />
+        <Line endX="580.0" endY="12.0" layoutX="412.0" layoutY="439.0" startX="-52.0" startY="12.0" />
+        <Line endX="580.0" endY="12.0" layoutX="410.0" layoutY="385.0" startX="-50.0" startY="12.0" />
+        <Line endX="580.0" endY="12.0" layoutX="412.0" layoutY="332.0" startX="-51.0" startY="12.0" />
+        <Line endX="580.0" endY="12.0" layoutX="410.0" layoutY="270.0" startX="-50.0" startY="12.0" />
+        <Line endX="580.0" endY="12.0" layoutX="412.0" layoutY="207.0" startX="-52.0" startY="12.0" />
+        <Line endX="72.5" endY="326.0" layoutX="288.0" layoutY="185.0" startX="72.5" startY="-39.0" />
         <Line endX="822.5" endY="289.5" layoutX="170.0" layoutY="220.0" startX="822.5" startY="-75.5" />
-        <Line endX="336.0" endY="259.5" layoutX="282.0" layoutY="250.0" startX="336.0" startY="-104.5" />
-        <Line endX="336.0" endY="259.5" layoutX="522.0" layoutY="250.0" startX="336.0" startY="-104.5" />
+        <Line endX="336.0" endY="259.5" layoutX="294.0" layoutY="251.0" startX="336.0" startY="-104.5" />
+        <Line endX="336.0" endY="259.5" layoutX="529.0" layoutY="251.0" startX="336.0" startY="-104.79290771484375" />
         <Label layoutX="875.0" layoutY="164.0" text="Amount">
             <font>
                 <Font name="System Bold" size="26.0" />
             </font>
         </Label>
-        <Button layoutX="73.0" layoutY="455.0" mnemonicParsing="false" onAction="#goToSend" prefHeight="106.0" prefWidth="282.0" style="-fx-background-color: #32CD32;" text="Send">
+        <Button layoutX="20.0" layoutY="445.0" mnemonicParsing="false" onAction="#goToSend" prefHeight="106.0" prefWidth="282.0" style="-fx-background-color: #32CD32;" text="Send">
             <font>
                 <Font size="51.0" />
             </font>
         </Button>
-        <Label layoutX="39.0" layoutY="297.0" prefHeight="51.0" prefWidth="187.0" text="Transfer" textAlignment="CENTER">
+        <Label layoutX="14.0" layoutY="345.0" prefHeight="51.0" prefWidth="187.0" text="Transfer" textAlignment="CENTER">
             <font>
                 <Font size="42.0" />
             </font>
         </Label>
-        <Label layoutX="183.0" layoutY="345.0" text="Your">
+        <Label layoutX="179.0" layoutY="345.0" text="Your">
             <font>
                 <Font size="42.0" />
             </font>
         </Label>
-        <Label layoutX="270.0" layoutY="390.0" text="Money">
+        <Label layoutX="82.0" layoutY="390.0" text="Money">
             <font>
                 <Font size="42.0" />
             </font>
         </Label>
-        <ImageView fitHeight="152.0" fitWidth="200.0" layoutX="114.0" layoutY="143.0">
+        <ImageView fitHeight="152.0" fitWidth="200.0" layoutX="47.0" layoutY="189.0">
             <image>
                 <Image url="@../images/transferlogo.png" />
             </image>
@@ -182,5 +182,41 @@
          </image>
       </ImageView>
       <Button layoutX="740.0" layoutY="525.0" mnemonicParsing="false" onAction="#openLogin" opacity="0.0" prefHeight="77.0" prefWidth="212.0" />
+      <Line endX="-100.0" endY="361.5" layoutX="840.0" layoutY="148.0" startX="-100.0" startY="-1.79290771484375" />
+      <Label layoutX="665.0" layoutY="166.0" text="Time">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="644.0" layoutY="232.0">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Label fx:id="time2" layoutX="639.0" layoutY="297.0" prefHeight="34.0" prefWidth="87.0">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Label fx:id="time3" layoutX="641.0" layoutY="355.0" prefHeight="34.0" prefWidth="85.0">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Label fx:id="time4" layoutX="641.0" layoutY="409.0" prefHeight="34.0" prefWidth="85.0">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Label fx:id="time5" layoutX="637.0" layoutY="465.0" prefHeight="34.0" prefWidth="87.0">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Label fx:id="time1" layoutX="641.0" layoutY="232.0" prefHeight="34.0" prefWidth="85.0">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

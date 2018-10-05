@@ -2,11 +2,10 @@ package walletData.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import walletData.DBConnect;
-import walletData.DBmethods;
+import walletData.dbs.DBConnect;
+import walletData.dbs.DBmethods;
 import walletData.Main;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -14,7 +13,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 
 public class RegisterController {
@@ -31,12 +29,6 @@ public class RegisterController {
     private PasswordField regconpassword;
 
     @FXML
-    private Button register;
-
-    @FXML
-    private Button backToLogin;
-
-    @FXML
     private Label publickeyLabel;
 
     @FXML
@@ -47,7 +39,6 @@ public class RegisterController {
 
     @FXML
     public void newRegister() {
-
         if (regname.getText().isEmpty() || regpassword.getText().isEmpty() || regconpassword.getText().isEmpty()) {
             publickeyLabel.setText("Fields cannot be empty");
         } else if (!regpassword.getText().equals(regconpassword.getText())) {
@@ -55,51 +46,16 @@ public class RegisterController {
         } else if (doesUserExist(regname.getText())) {
             publickeyLabel.setText("User already exists");
         } else {
-            registerUser(regname.getText(), regpassword.getText());
-        }
-    }
-
-    private boolean doesUserExist(String username) {
-        boolean found = false;
-        try {
-            String query = String.format("SELECT * FROM `users` WHERE username = '%s';", username);
-            found = DBConnect.getStatement().executeQuery(query).next();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return found;
-    }
-
-    private void registerUser(String username, String password) {
-        try {
-            int pubkey = DBmethods.genPubKey();
-            int prikey = DBmethods.genPriKey();
-            String insert = String.format("INSERT INTO `users`(`username`, `password`, `balance`, `publickey`, `privatekey`) VALUES ('%s','%s','%d','%d','%d')", username, password,10000,pubkey,prikey); //change table name
-            DBConnect.getStatement().executeUpdate(insert);
-
-            createtransactiontable(regname.getText());
-
-            usernameLabel.setText(String.format(("Welcome %s"),username));
-            publickeyLabel.setText(String.format(("Public Key : %d"),pubkey));
-            privatekeyLabel.setText(String.format(("Private Key : %d"),prikey));
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static void createtransactiontable(String user){
-        try {
-            System.out.println("Entered createtransactiontable");
-            String tablequery = "CREATE TABLE  "+user+"(TransactionIDs VARCHAR(255))"; //add fields
-            DBConnect.getStatement().executeUpdate(tablequery);
-        } catch (SQLException e){
-            e.printStackTrace();
+            try {
+                registerUser(regname.getText(), regpassword.getText());
+            }catch(SQLException e){
+                e.printStackTrace();
+            }
         }
     }
 
     @FXML
-    public void backToLogin() {
+    public void backToLogin() {                                                             //Stages Login
         try {
             Stage loginStage = Main.stage;
             root = FXMLLoader.load(getClass().getResource("/walletData/fxml/login.fxml"));
@@ -110,5 +66,38 @@ public class RegisterController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private boolean doesUserExist(String username) {                                        //test username availability
+        boolean found = false;
+        try {
+            String query = String.format("SELECT * FROM `users` WHERE username = '%s';", username);
+            found = DBConnect.getStatement().executeQuery(query).next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return found;
+    }
+
+    private void registerUser(String username, String password) throws SQLException{        //adds user to dbtable
+        int pubkey = 0;
+        int prikey = 0;
+        try {
+             pubkey = DBmethods.genPubKey();
+             prikey = DBmethods.genPriKey();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        String insert = String.format("INSERT INTO `users`(`username`, `password`, `balance`, `publickey`, `privatekey`) VALUES ('%s','%s','%d','%d','%d')", username, password,10000,pubkey,prikey); //change table name
+            DBConnect.getStatement().executeUpdate(insert);
+            createtransactiontable(regname.getText());
+            usernameLabel.setText(String.format(("Welcome %s"),username));
+            publickeyLabel.setText(String.format(("Public Key : %d"),pubkey));
+            privatekeyLabel.setText(String.format(("Private Key : %d"),prikey));
+    }
+
+    private static void createtransactiontable(String user) throws SQLException{        //create TransactionId Table
+            String tablequery = "CREATE TABLE  "+user+"(TransactionIDs VARCHAR(255))"; //add fields
+            DBConnect.getStatement().executeUpdate(tablequery);
     }
 }

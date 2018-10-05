@@ -37,7 +37,7 @@ public class LoginController {
     @FXML
     void onLogin(ActionEvent event) {
         System.out.println("OnLogin called");
-        String query = "SELECT * FROM `users` WHERE `username` = '%s' && `password` = '%s'";
+        String query = "SELECT * FROM `userdata` WHERE `username` = '%s' && `password` = '%s'";
         query = String.format(query, username.getText(), password.getText());
 
         if(username.getText().isEmpty() || password.getText().isEmpty()){

@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class SendMyVerificationController {
@@ -44,7 +45,7 @@ public class SendMyVerificationController {
         System.out.println(Integer.parseInt(publickey.getText()));
         if(vreturn == 1) {
             try {
-                if(Transactions.amountInBalance(Integer.parseInt(sendAmount.getText()) , LoginController.loggeduser)){
+                if(Transactions.amountInBalance(Integer.parseInt(sendAmount.getText()) , Integer.parseInt(privatekey.getText()))){
                     Transactions.removeMoney();         //deducts money from sender wallet
                     Transactions.addMoney();            //adds money to receiver wallet
                     TransactionTableInsert();           //Inserts Transaction Id
@@ -73,8 +74,17 @@ public class SendMyVerificationController {
     }
 
     private void TransactionTableInsert() throws SQLException{
-            String TransID = Transactions.genTransID();
-            String insert = String.format("INSERT INTO %s (TransactionIDs) VALUES (%s)",LoginController.loggeduser,TransID);
+            String insert = String.format("INSERT INTO `transaction` (`transid`,`senderpub`,`receiverpub`,`amount`,"
+                    + "`time`) VALUES ('%s','%s','%d','%d','%s')",Transactions.genTransID(),getsenderpub(),Integer.parseInt(publickey.getText()),Integer.parseInt(sendAmount.getText()),Transactions.getTime());
             DBConnect.getStatement().executeUpdate(insert);
+    }
+
+    private String getsenderpub() throws SQLException{
+        String query = String.format("SELECT * FROM `userwallet` WHERE `privatekey` = '%s'",privatekey.getText());
+        ResultSet sendSet = DBConnect.getStatement().executeQuery(query);
+        if(sendSet.next())
+            return sendSet.getString("publickey");
+        else
+            return "0";
     }
 }

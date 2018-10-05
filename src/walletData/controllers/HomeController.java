@@ -109,21 +109,24 @@ public class HomeController {
 
         int mykey;
         String bal;
-        String[] arr = new String[5];
+        String[] ids = new String[5];
+        String[] recpubs = new String[5];
+        String[] time = new String[5];
+        String[] amts = new String[5];
 
         try{
             mykey=getkey();                                                 //gets public key
             String key = Integer.toString(mykey);
             publicKey.setText(key);
-            bal = getbal();                                                 //gets user balance
+            bal = getbal(mykey);                                                 //gets user balance
             balance.setText(bal);
-            setmyIds(arr);
+            setmyIds(ids,recpubs,time,amts,mykey);
         }catch(SQLException e){
             e.printStackTrace();
         }
 
         try {
-            setTable(arr);                                                  //sets UI table values
+            setTable(ids,recpubs,time,amts);                                                  //sets UI table values
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
@@ -153,7 +156,7 @@ public class HomeController {
     }
 
     private int getkey() throws SQLException{
-        String myquery = String.format("SELECT `publickey` FROM `users` WHERE `username` = '%s' ",LoginController.loggeduser);
+        String myquery = String.format("SELECT `publickey` FROM `userdata` WHERE `username` = '%s' ",LoginController.loggeduser);
         ResultSet set =
                 DBConnect.getStatement()
                         .executeQuery(myquery);
@@ -162,8 +165,8 @@ public class HomeController {
         else return 0;
     }
 
-    private String getbal() throws SQLException{
-        String querybal = String.format("SELECT `balance` FROM `users` WHERE `username` = '%s'",LoginController.loggeduser);
+    private String getbal(int mykey) throws SQLException{
+        String querybal = String.format("SELECT `balance` FROM `userwallet` WHERE `publickey` = '%d'",mykey);
         ResultSet mysetbal = DBConnect.getStatement().executeQuery(querybal);
         if(mysetbal.next())
             return mysetbal.getString("balance");
@@ -171,59 +174,65 @@ public class HomeController {
             return "00";
     }
 
-    private void setmyIds(String[] myarr) throws SQLException {
+    private void setmyIds(String[] ids,String[] recpubs,String[] time,String[] amts,int mykey) throws SQLException {
         int count = 1;
-        String search = String.format("SELECT * FROM %s WHERE 1", LoginController.loggeduser);
+        String search = String.format("SELECT `transid`,`senderpub`,`receiverpub`,`time`,`amount` FROM `userdata` JOIN `transaction` ON `publickey` = `senderpub` WHERE `senderpub`='%d'", mykey);
         ResultSet mySet = DBConnect.getStatement().executeQuery(search);
         mySet.last();
-        myarr[0] = mySet.getString("TransactionIDs");
+        ids[0] = mySet.getString("transid");
+        recpubs[0] = mySet.getString("receiverpub");
+        time[0] = mySet.getString("time");
+        amts[0] = mySet.getString("amount");
         while (mySet.previous() && count < 5) {
-            myarr[count] = mySet.getString("TransactionIDs");
+            ids[count] = mySet.getString("transid");
+            recpubs[count] = mySet.getString("receiverpub");
+            time[count] = mySet.getString("time");
+            amts[count] = mySet.getString("amount");
             count++;
         }
     }
 
-    private String setRec(String s){return s.substring(12,18);}
-    private String setAmt(String s){return s.substring(24);}
-    private String setTime(String s){
-        return s.substring(6,8)+":"+s.substring(8,10)+":"+s.substring(10,12);
-    }
+//    private String setRec(String s){return s.substring(12,18);}
+//    private String setAmt(String s){return s.substring(24);}
+//    private String setTime(String s){
+//        return s.substring(6,8)+":"+s.substring(8,10)+":"+s.substring(10,12);
+//    }
 
-    private void setTable(String[] arr) throws NullPointerException{
+    private void setTable(String[] ids,String[] recpubs,String[] time,String[] amts) throws NullPointerException{
 
-        trans1.setText(arr[0]);
-        tt1.setText(arr[0]);
+        trans1.setText(ids[0]);
+        tt1.setText(ids[0]);
         trans1.setTooltip(tt1);
-        rec1.setText(setRec(arr[0]));
-        amt1.setText(setAmt(arr[0]));
-        time1.setText(setTime(arr[0]));
+        rec1.setText(recpubs[0]);
+        amt1.setText(amts[0]);
+        time1.setText(time[0]);
 
-        trans2.setText(arr[1]);
-        tt2.setText(arr[1]);
+        trans2.setText(ids[1]);
+        tt2.setText(ids[1]);
         trans2.setTooltip(tt2);
-        rec2.setText(setRec(arr[1]));
-        amt2.setText(setAmt(arr[1]));
-        time2.setText(setTime(arr[1]));
+        rec2.setText(recpubs[1]);
+        amt2.setText(amts[1]);
+        time2.setText(time[1]);
 
-        trans3.setText(arr[2]);
-        tt3.setText(arr[2]);
+        trans3.setText(ids[2]);
+        tt3.setText(ids[2]);
         trans3.setTooltip(tt3);
-        rec3.setText(setRec(arr[2]));
-        amt3.setText(setAmt(arr[2]));
-        time3.setText(setTime(arr[2]));
+        rec3.setText(recpubs[3]);
+        amt3.setText(amts[3]);
+        time3.setText(time[3]);
 
-        trans4.setText(arr[3]);
-        tt4.setText(arr[3]);
+        trans4.setText(ids[3]);
+        tt4.setText(ids[3]);
         trans4.setTooltip(tt4);
-        rec4.setText(setRec(arr[3]));
-        amt4.setText(setAmt(arr[3]));
-        time4.setText(setTime(arr[3]));
+        rec4.setText(recpubs[3]);
+        amt4.setText(amts[3]);
+        time4.setText(time[3]);
 
-        trans5.setText(arr[4]);
-        tt5.setText(arr[4]);
+        trans5.setText(ids[4]);
+        tt5.setText(ids[4]);
         trans5.setTooltip(tt5);
-        rec5.setText(setRec(arr[4]));
-        amt5.setText(setAmt(arr[4]));
-        time5.setText(setTime(arr[4]));
+        rec5.setText(recpubs[4]);
+        amt5.setText(amts[4]);
+        time5.setText(time[4]);
     }
 }

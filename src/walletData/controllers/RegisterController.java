@@ -71,7 +71,7 @@ public class RegisterController {
     private boolean doesUserExist(String username) {                                        //test username availability
         boolean found = false;
         try {
-            String query = String.format("SELECT * FROM `users` WHERE username = '%s';", username);
+            String query = String.format("SELECT * FROM `userdata` WHERE username = '%s';", username);
             found = DBConnect.getStatement().executeQuery(query).next();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -88,16 +88,14 @@ public class RegisterController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        String insert = String.format("INSERT INTO `users`(`username`, `password`, `balance`, `publickey`, `privatekey`) VALUES ('%s','%s','%d','%d','%d')", username, password,10000,pubkey,prikey); //change table name
-            DBConnect.getStatement().executeUpdate(insert);
-            createtransactiontable(regname.getText());
+        String insertuserdata = String.format("INSERT INTO `userdata` (`publickey`,`username`,`password`) VALUES ('%d','%s','%s')",pubkey,username, password);
+            DBConnect.getStatement().executeUpdate(insertuserdata);
+        String insertuserwallet = String.format("INSERT INTO `userwallet` (`publickey`,`privatekey`,`balance`) VALUES ('%d','%d','%d');",pubkey,prikey,10000);
+            DBConnect.getStatement().executeUpdate(insertuserwallet);
+
+            //createtransactiontable(regname.getText());
             usernameLabel.setText(String.format(("Welcome %s"),username));
             publickeyLabel.setText(String.format(("Public Key : %d"),pubkey));
             privatekeyLabel.setText(String.format(("Private Key : %d"),prikey));
-    }
-
-    private static void createtransactiontable(String user) throws SQLException{        //create TransactionId Table
-            String tablequery = "CREATE TABLE  "+user+"(TransactionIDs VARCHAR(255))"; //add fields
-            DBConnect.getStatement().executeUpdate(tablequery);
     }
 }

@@ -1,4 +1,4 @@
-package walletData;
+package walletData.dbs;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,13 +11,14 @@ public class DBConnect {
     private static Connection connection;
     private static Statement statement;
 
-    public static void connect(){
+    public static void connect(){       //DB connection establishment
         try {
             connection = DriverManager.getConnection(DB_URL,"root","");
             statement = connection.createStatement();
             System.out.println("Connection Established" );
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("Could not Connect to DataBase");
         }
     }
 
@@ -25,8 +26,7 @@ public class DBConnect {
         return statement;
     }
 
-    public static void disconnect(){
-
+    public static void disconnect(){       //Close DB connections
         try {
             statement.close();
             connection.close();

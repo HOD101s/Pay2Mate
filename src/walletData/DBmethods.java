@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class DBmethods {
     public static int genPubKey(){
-        int pubkey = (int)(Math.random()*((999999-100000 + 1))+100000);
+        int pubkey = (int)(Math.random()*((999999-100000 + 1))+100000); //generate random key
 
         String query = String.format("SELECT * from `users` WHERE `publickey` = '%d'",pubkey);
         try{

@@ -72,7 +72,7 @@ public class Transactions {
     public static String genTransID() throws SQLException {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         SimpleDateFormat sdf = new SimpleDateFormat("MMddHHmm");
-        String myTran = String.format(sdf.format(timestamp) + randomAlphaNumeric(6));
+        String myTran = sdf.format(timestamp) + randomAlphaNumeric(6);
         if (checkTrans(myTran))
             return genTransID();
         else
@@ -81,7 +81,7 @@ public class Transactions {
 
     private static final String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-    public static String randomAlphaNumeric(int count) {
+    private static String randomAlphaNumeric(int count) {
         StringBuilder builder = new StringBuilder();
         while (count-- != 0) {
             int character = (int) (Math.random() * ALPHA_NUMERIC_STRING.length());

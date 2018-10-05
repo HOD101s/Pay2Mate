@@ -101,7 +101,6 @@ public class HomeController {
     @FXML
     private Tooltip tt5;
 
-
     @FXML
     public void  initialize(){
 
@@ -191,12 +190,6 @@ public class HomeController {
             count++;
         }
     }
-
-//    private String setRec(String s){return s.substring(12,18);}
-//    private String setAmt(String s){return s.substring(24);}
-//    private String setTime(String s){
-//        return s.substring(6,8)+":"+s.substring(8,10)+":"+s.substring(10,12);
-//    }
 
     private void setTable(String[] ids,String[] recpubs,String[] time,String[] amts) throws NullPointerException{
 

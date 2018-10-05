@@ -42,7 +42,6 @@ public class SendMyVerificationController {
             e.printStackTrace();
         }
 
-        System.out.println(Integer.parseInt(publickey.getText()));
         if(vreturn == 1) {
             try {
                 if(Transactions.amountInBalance(Integer.parseInt(sendAmount.getText()) , Integer.parseInt(privatekey.getText()))){

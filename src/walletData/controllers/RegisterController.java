@@ -92,8 +92,6 @@ public class RegisterController {
             DBConnect.getStatement().executeUpdate(insertuserdata);
         String insertuserwallet = String.format("INSERT INTO `userwallet` (`publickey`,`privatekey`,`balance`) VALUES ('%d','%d','%d');",pubkey,prikey,10000);
             DBConnect.getStatement().executeUpdate(insertuserwallet);
-
-            //createtransactiontable(regname.getText());
             usernameLabel.setText(String.format(("Welcome %s"),username));
             publickeyLabel.setText(String.format(("Public Key : %d"),pubkey));
             privatekeyLabel.setText(String.format(("Private Key : %d"),prikey));

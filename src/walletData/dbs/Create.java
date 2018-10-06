@@ -8,7 +8,7 @@ public class Create {
     public static void create() {
 
         try {
-            if(!DBConnect.getStatement().executeQuery("show databases like 'pay2mate'").next()) {
+            if (!DBConnect.getStatement().executeQuery("show databases like 'pay2mate'").next()) {
                 DBConnect.getStatement().execute("CREATE DATABASE pay2mate");
                 DBConnect.getStatement().execute("USE pay2mate");
                 DBConnect.getStatement().execute(Execute.createTransaction);

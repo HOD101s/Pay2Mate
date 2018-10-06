@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import walletData.Query.Execute;
 import walletData.dbs.DBConnect;
 import walletData.dbs.DBmethods;
 import walletData.Main;
@@ -12,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -39,61 +41,41 @@ public class RegisterController {
 
     @FXML
     public void newRegister() {
-        if (regname.getText().isEmpty() || regpassword.getText().isEmpty() || regconpassword.getText().isEmpty()) {
-            publickeyLabel.setText("Fields cannot be empty");
-        } else if (!regpassword.getText().equals(regconpassword.getText())) {
-            publickeyLabel.setText("Passwords do not match");
-        } else if (doesUserExist(regname.getText())) {
-            publickeyLabel.setText("User already exists");
-        } else {
-            try {
+        try {
+            if (regname.getText().isEmpty() || regpassword.getText().isEmpty() || regconpassword.getText().isEmpty()) {
+                publickeyLabel.setText("Fields cannot be empty");
+            } else if (!regpassword.getText().equals(regconpassword.getText())) {
+                publickeyLabel.setText("Passwords do not match");
+            } else if (doesUserExist(regname.getText())) {
+                publickeyLabel.setText("User already exists");
+            } else
                 registerUser(regname.getText(), regpassword.getText());
-            }catch(SQLException e){
-                e.printStackTrace();
-            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
     @FXML
-    public void backToLogin() {                                                             //Stages Login
-        try {
-            Stage loginStage = Main.stage;
-            root = FXMLLoader.load(getClass().getResource("/walletData/fxml/login.fxml"));
-            loginStage.setTitle("Login");
-            loginStage.setScene(new Scene(root));
-            loginStage.setResizable(false);
-            loginStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void backToLogin() throws IOException {                                                             //Stages Login
+        Stage loginStage = Main.stage;
+        root = FXMLLoader.load(getClass().getResource("/walletData/fxml/login.fxml"));
+        loginStage.setTitle("Login");
+        loginStage.setScene(new Scene(root));
+        loginStage.setResizable(false);
+        loginStage.show();
     }
 
-    private boolean doesUserExist(String username) {                                        //test username availability
-        boolean found = false;
-        try {
-            String query = String.format("SELECT * FROM `userdata` WHERE username = '%s';", username);
-            found = DBConnect.getStatement().executeQuery(query).next();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return found;
+    private boolean doesUserExist(String username) throws SQLException {                                        //test username availability
+        return DBConnect.getStatement().executeQuery(String.format(Execute.userExists, username)).next();
     }
 
-    private void registerUser(String username, String password) throws SQLException{        //adds user to dbtable
-        int pubkey = 0;
-        int prikey = 0;
-        try {
-             pubkey = DBmethods.genPubKey();
-             prikey = DBmethods.genPriKey();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        String insertuserdata = String.format("INSERT INTO `userdata` (`publickey`,`username`,`password`) VALUES ('%d','%s','%s')",pubkey,username, password);
-            DBConnect.getStatement().executeUpdate(insertuserdata);
-        String insertuserwallet = String.format("INSERT INTO `userwallet` (`publickey`,`privatekey`,`balance`) VALUES ('%d','%d','%d');",pubkey,prikey,10000);
-            DBConnect.getStatement().executeUpdate(insertuserwallet);
-            usernameLabel.setText(String.format(("Welcome %s"),username));
-            publickeyLabel.setText(String.format(("Public Key : %d"),pubkey));
-            privatekeyLabel.setText(String.format(("Private Key : %d"),prikey));
+    private void registerUser(String username, String password) throws SQLException {        //adds user to dbtable
+        int pubkey = DBmethods.genPubKey();
+        int prikey = DBmethods.genPriKey();
+        DBConnect.getStatement().executeUpdate(String.format(Execute.insertUserData, pubkey, username, password));
+        DBConnect.getStatement().executeUpdate(String.format(Execute.insertUserWallet, pubkey, prikey, 10000));
+        usernameLabel.setText(String.format(("Welcome %s"), username));
+        publickeyLabel.setText(String.format(("Public Key : %d"), pubkey));
+        privatekeyLabel.setText(String.format(("Private Key : %d"), prikey));
     }
 }

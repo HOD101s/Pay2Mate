@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Tooltip;
 import javafx.stage.Stage;
+import walletData.Query.Execute;
 import walletData.dbs.DBConnect;
 import walletData.Main;
 import javafx.scene.control.Label;
@@ -102,7 +103,7 @@ public class HomeController {
     private Tooltip tt5;
 
     @FXML
-    public void  initialize(){
+    public void initialize() {
 
         homeUser.setText(LoginController.loggeduser);
 
@@ -113,27 +114,27 @@ public class HomeController {
         String[] time = new String[5];
         String[] amts = new String[5];
 
-        try{
-            mykey=getkey();                                                 //gets public key
+        try {
+            mykey = getkey();                                                 //gets public key
             String key = Integer.toString(mykey);
             publicKey.setText(key);
             bal = getbal(mykey);                                                 //gets user balance
             balance.setText(bal);
-            setmyIds(ids,recpubs,time,amts,mykey);
-        }catch(SQLException e){
+            setmyIds(ids, recpubs, time, amts, mykey);
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
         try {
-            setTable(ids,recpubs,time,amts);                                                  //sets UI table values
+            setTable(ids, recpubs, time, amts);                                                  //sets UI table values
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
     }
 
     @FXML
-    public void goToSend(ActionEvent event) throws IOException{             //Stages send
-        Stage sendMoneyStage  = Main.stage;
+    public void goToSend(ActionEvent event) throws IOException {             //Stages send
+        Stage sendMoneyStage = Main.stage;
         Parent root = FXMLLoader.load(getClass().getResource("/walletData/fxml/sendVerification.fxml"));
         sendMoneyStage.setTitle("Hello World");
         sendMoneyStage.setScene(new Scene(root));
@@ -141,42 +142,35 @@ public class HomeController {
     }
 
     @FXML
-    public void openLogin(ActionEvent event) throws IOException{            //Stages Login
-        try {
+    public void openLogin(ActionEvent event) throws IOException {            //Stages Login
             Stage loginStage = Main.stage;
             Parent root = FXMLLoader.load(getClass().getResource("/walletData/fxml/login.fxml"));
             loginStage.setTitle("Login");
             loginStage.setScene(new Scene(root));
             loginStage.setResizable(false);
             loginStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
-    private int getkey() throws SQLException{
-        String myquery = String.format("SELECT `publickey` FROM `userdata` WHERE `username` = '%s' ",LoginController.loggeduser);
+    private int getkey() throws SQLException {
         ResultSet set =
                 DBConnect.getStatement()
-                        .executeQuery(myquery);
-        if(set.next())
+                        .executeQuery(String.format(Execute.getKey, LoginController.loggeduser));
+        if (set.next())
             return set.getInt("publickey");
         else return 0;
     }
 
-    private String getbal(int mykey) throws SQLException{
-        String querybal = String.format("SELECT `balance` FROM `userwallet` WHERE `publickey` = '%d'",mykey);
-        ResultSet mysetbal = DBConnect.getStatement().executeQuery(querybal);
-        if(mysetbal.next())
+    private String getbal(int mykey) throws SQLException {
+        ResultSet mysetbal = DBConnect.getStatement().executeQuery(String.format(Execute.getBal, mykey));
+        if (mysetbal.next())
             return mysetbal.getString("balance");
         else
             return "00";
     }
 
-    private void setmyIds(String[] ids,String[] recpubs,String[] time,String[] amts,int mykey) throws SQLException {
+    private void setmyIds(String[] ids, String[] recpubs, String[] time, String[] amts, int mykey) throws SQLException {
         int count = 1;
-        String search = String.format("SELECT `transid`,`senderpub`,`receiverpub`,`time`,`amount` FROM `userdata` JOIN `transaction` ON `publickey` = `senderpub` WHERE `senderpub`='%d'", mykey);
-        ResultSet mySet = DBConnect.getStatement().executeQuery(search);
+        ResultSet mySet = DBConnect.getStatement().executeQuery(String.format(Execute.setTable, mykey));
         mySet.last();
         ids[0] = mySet.getString("transid");
         recpubs[0] = mySet.getString("receiverpub");
@@ -191,7 +185,7 @@ public class HomeController {
         }
     }
 
-    private void setTable(String[] ids,String[] recpubs,String[] time,String[] amts) throws NullPointerException{
+    private void setTable(String[] ids, String[] recpubs, String[] time, String[] amts) throws NullPointerException {
 
         trans1.setText(ids[0]);
         tt1.setText(ids[0]);

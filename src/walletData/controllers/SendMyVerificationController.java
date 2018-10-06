@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import walletData.Query.Execute;
 import walletData.dbs.DBConnect;
 import walletData.Main;
 import walletData.dbs.Transactions;
@@ -41,7 +42,7 @@ public class SendMyVerificationController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        System.out.println(vreturn);
         if(vreturn == 1) {
             try {
                 if(Transactions.amountInBalance(Integer.parseInt(sendAmount.getText()) , Integer.parseInt(privatekey.getText()))){
@@ -73,14 +74,12 @@ public class SendMyVerificationController {
     }
 
     private void TransactionTableInsert() throws SQLException{
-            String insert = String.format("INSERT INTO `transaction` (`transid`,`senderpub`,`receiverpub`,`amount`,"
-                    + "`time`) VALUES ('%s','%s','%d','%d','%s')",Transactions.genTransID(),getsenderpub(),Integer.parseInt(publickey.getText()),Integer.parseInt(sendAmount.getText()),Transactions.getTime());
-            DBConnect.getStatement().executeUpdate(insert);
+            DBConnect.getStatement().executeUpdate(String.format(Execute.transTableInsert,Transactions.genTransID(),getsenderpub(),
+                    Integer.parseInt(publickey.getText()),Integer.parseInt(sendAmount.getText()),Transactions.getTime(),Transactions.getDate()));
     }
 
     private String getsenderpub() throws SQLException{
-        String query = String.format("SELECT * FROM `userwallet` WHERE `privatekey` = '%s'",privatekey.getText());
-        ResultSet sendSet = DBConnect.getStatement().executeQuery(query);
+        ResultSet sendSet = DBConnect.getStatement().executeQuery(String.format(Execute.getSenderPub,privatekey.getText()));
         if(sendSet.next())
             return sendSet.getString("publickey");
         else

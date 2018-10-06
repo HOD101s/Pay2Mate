@@ -1,5 +1,7 @@
 package walletData.dbs;
 
+import walletData.Query.Execute;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -7,10 +9,9 @@ public class DBmethods {
 
     public static int genPubKey() throws SQLException{
         int pubkey = (int)(Math.random()*((999999-100000 + 1))+100000);
-        String query = String.format("SELECT * from `userdata` WHERE `publickey` = '%d'",pubkey);
             ResultSet set =
                     DBConnect.getStatement()
-                            .executeQuery(query);
+                            .executeQuery(String.format(Execute.genPub,pubkey));
             if(set.next()){
                 return genPubKey();
             }
@@ -20,15 +21,14 @@ public class DBmethods {
     }
 
     public static int genPriKey() throws SQLException{
-        int pubkey = (int)(Math.random()*((999999-100000 + 1))+100000);
-        String query = String.format("SELECT * from `userdata` WHERE `publickey` = '%d'",pubkey);
+        int prikey = (int)(Math.random()*((999999-100000 + 1))+100000);
             ResultSet set =
                     DBConnect.getStatement()
-                            .executeQuery(query);
+                            .executeQuery(String.format(Execute.genPri,prikey));
             if(set.next()){
-                return genPubKey();
+                return genPriKey();
             }
             set.close();
-        return pubkey;
+        return prikey;
     }
 }

@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import walletData.Query.Execute;
 import walletData.dbs.DBConnect;
 import walletData.Main;
 import javafx.scene.control.Label;
@@ -36,15 +37,11 @@ public class LoginController {
 
     @FXML
     void onLogin(ActionEvent event) {
-        System.out.println("OnLogin called");
-        String query = "SELECT * FROM `userdata` WHERE `username` = '%s' && `password` = '%s'";
-        query = String.format(query, username.getText(), password.getText());
-
         if(username.getText().isEmpty() || password.getText().isEmpty()){
             status.setText("username or password cannot be empty");
         }else{
             try{
-                login(query);           //check login data
+                login(String.format(Execute.loginQuery,username.getText(), password.getText()));           //check login data
             }catch (SQLException e){
                 e.printStackTrace();
             }

@@ -24,13 +24,8 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
         DBConnect.connect();
-        System.out.println("Do you want to set up dbs?\nY/N\n");
-        String dbCreate = sc.nextLine();
-        if(dbCreate.equals("Y") || dbCreate.equals("y")) {
-            Create.create();
-        }
+        Create.create();
         launch(args);
         DBConnect.disconnect();
     }

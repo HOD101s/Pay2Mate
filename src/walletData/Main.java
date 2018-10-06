@@ -1,10 +1,12 @@
 package walletData;
+import java.util.Scanner;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import walletData.dbs.Create;
 import walletData.dbs.DBConnect;
 
 public class Main extends Application {
@@ -22,7 +24,13 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
         DBConnect.connect();
+        System.out.println("Do you want to set up dbs?\nY/N\n");
+        String dbCreate = sc.nextLine();
+        if(dbCreate.equals("Y") || dbCreate.equals("y")) {
+            Create.create();
+        }
         launch(args);
         DBConnect.disconnect();
     }

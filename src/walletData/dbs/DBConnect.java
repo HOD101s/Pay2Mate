@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 public class DBConnect {
 
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/pay2mate";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/test";
     private static Connection connection;
     private static Statement statement;
 

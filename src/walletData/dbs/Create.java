@@ -8,12 +8,14 @@ public class Create {
     public static void create() {
 
         try {
-            if (!DBConnect.getStatement().executeQuery("show databases like 'pay2mate'").next()) {
-                DBConnect.getStatement().execute("CREATE DATABASE pay2mate");
-                DBConnect.getStatement().execute("USE pay2mate");
+            if (!DBConnect.getStatement().executeQuery(Execute.doesPay2MateExist).next()) {
+                DBConnect.getStatement().execute(Execute.createPay2Mate);
+                DBConnect.getStatement().execute(Execute.usePay2);
                 DBConnect.getStatement().execute(Execute.createTransaction);
                 DBConnect.getStatement().execute(Execute.createuserData);
                 DBConnect.getStatement().execute(Execute.createuserwallet);
+            } else{
+                DBConnect.getStatement().execute(Execute.usePay2);
             }
         } catch (SQLException e) {
             e.printStackTrace();

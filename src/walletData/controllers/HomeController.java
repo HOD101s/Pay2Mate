@@ -88,21 +88,6 @@ public class HomeController {
     private Label time5;
 
     @FXML
-    private Tooltip tt1;
-
-    @FXML
-    private Tooltip tt2;
-
-    @FXML
-    private Tooltip tt3;
-
-    @FXML
-    private Tooltip tt4;
-
-    @FXML
-    private Tooltip tt5;
-
-    @FXML
     public void initialize() {
 
         homeUser.setText(LoginController.loggeduser);
@@ -188,36 +173,26 @@ public class HomeController {
     private void setTable(String[] ids, String[] recpubs, String[] time, String[] amts) throws NullPointerException {
 
         trans1.setText(ids[0]);
-        tt1.setText(ids[0]);
-        trans1.setTooltip(tt1);
         rec1.setText(recpubs[0]);
         amt1.setText(amts[0]);
         time1.setText(time[0]);
 
         trans2.setText(ids[1]);
-        tt2.setText(ids[1]);
-        trans2.setTooltip(tt2);
         rec2.setText(recpubs[1]);
         amt2.setText(amts[1]);
         time2.setText(time[1]);
 
         trans3.setText(ids[2]);
-        tt3.setText(ids[2]);
-        trans3.setTooltip(tt3);
         rec3.setText(recpubs[3]);
         amt3.setText(amts[3]);
         time3.setText(time[3]);
 
         trans4.setText(ids[3]);
-        tt4.setText(ids[3]);
-        trans4.setTooltip(tt4);
         rec4.setText(recpubs[3]);
         amt4.setText(amts[3]);
         time4.setText(time[3]);
 
         trans5.setText(ids[4]);
-        tt5.setText(ids[4]);
-        trans5.setTooltip(tt5);
         rec5.setText(recpubs[4]);
         amt5.setText(amts[4]);
         time5.setText(time[4]);

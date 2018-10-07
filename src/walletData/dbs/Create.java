@@ -14,6 +14,7 @@ public class Create {
                 DBConnect.getStatement().execute(Execute.createTransaction);
                 DBConnect.getStatement().execute(Execute.createuserData);
                 DBConnect.getStatement().execute(Execute.createuserwallet);
+                DBConnect.getStatement().execute(Execute.adminReq);
             } else{
                 DBConnect.getStatement().execute(Execute.usePay2);
             }

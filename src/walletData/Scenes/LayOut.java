@@ -37,4 +37,8 @@ public class LayOut {
     protected void myhome() throws IOException{
         myMaster("/walletData/fxml/home.fxml",LoginController.loggeduser);
     }
+
+    protected void myrequest() throws IOException{
+        myMaster("/walletData/fxml/request.fxml","Request");
+    }
 }

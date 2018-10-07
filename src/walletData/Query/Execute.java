@@ -19,6 +19,10 @@ public class Execute {
     public static final String addMoney = "UPDATE `userwallet` SET `balance` = balance + %d WHERE `publickey` = '%d'";
     public static final String checkTransID = "SELECT * FROM `transaction` WHERE `transid` = '%s'";
 
+    //admin
+    public static final String adminInsert ="INSERT INTO `adminreq`(`publickey`, `request`) VALUES ('%d','%d')";
+    public static final String pubinsert = "SELECT `publickey` FROM `adminreq`";
+    public static final String reqinsert = "SELECT `request` FROM `adminreq`";
     //setupdb
 
     public static final String createTransaction = "CREATE TABLE `pay2mate`.`transaction` ( `transid` VARCHAR(255) NOT NULL ,  `senderpub` INT(255) NOT NULL ,  `receiverpub` INT(255) NOT NULL ,  `amount` INT(11) NOT NULL ,  `time` VARCHAR(255) NOT NULL ,  `date` VARCHAR(255) NOT NULL ) ENGINE = InnoDB";
@@ -27,4 +31,5 @@ public class Execute {
     public static final String createPay2Mate = "CREATE DATABASE pay2mate";
     public static final String doesPay2MateExist = "show databases like 'pay2mate'";
     public static final String usePay2 = "USE pay2mate";
+    public static final String adminReq = "CREATE TABLE `pay2mate`.`adminreq` ( `publickey` INT(11) NOT NULL , `request` TEXT NOT NULL ) ENGINE = InnoDB";
 }

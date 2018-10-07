@@ -232,5 +232,6 @@
             <Font name="Verdana Bold Italic" size="47.0" />
          </font>
       </Label>
+      <Button layoutX="448.0" layoutY="548.0" mnemonicParsing="false" onAction="#openRequest" text="Admin Request" />
     </children>
 </AnchorPane>

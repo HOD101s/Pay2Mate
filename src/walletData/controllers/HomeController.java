@@ -122,7 +122,12 @@ public class HomeController extends LayOut {
         mylogin();
     }
 
-    private int getkey() throws SQLException {
+    @FXML
+    private void openRequest() throws IOException{
+        myrequest();
+    }
+
+    public static int getkey() throws SQLException {
         ResultSet set = DBConnect.getStatement().executeQuery(String.format(Execute.getKey, LoginController.loggeduser));
         if (set.next())
             return set.getInt("publickey");
@@ -181,4 +186,6 @@ public class HomeController extends LayOut {
         amt5.setText(amts[4]);
         time5.setText(time[4]);
     }
+
+
 }

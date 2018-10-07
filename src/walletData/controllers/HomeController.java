@@ -2,21 +2,16 @@ package walletData.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Tooltip;
-import javafx.stage.Stage;
 import walletData.Query.Execute;
+import walletData.Scenes.LayOut;
 import walletData.dbs.DBConnect;
-import walletData.Main;
 import javafx.scene.control.Label;
 
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class HomeController {
+public class HomeController extends LayOut {
 
     @FXML
     private Label homeUser;
@@ -119,21 +114,12 @@ public class HomeController {
 
     @FXML
     public void goToSend(ActionEvent event) throws IOException {             //Stages send
-        Stage sendMoneyStage = Main.stage;
-        Parent root = FXMLLoader.load(getClass().getResource("/walletData/fxml/sendVerification.fxml"));
-        sendMoneyStage.setTitle("Hello World");
-        sendMoneyStage.setScene(new Scene(root));
-        sendMoneyStage.show();
+        mySend();
     }
 
     @FXML
     public void openLogin(ActionEvent event) throws IOException {            //Stages Login
-            Stage loginStage = Main.stage;
-            Parent root = FXMLLoader.load(getClass().getResource("/walletData/fxml/login.fxml"));
-            loginStage.setTitle("Login");
-            loginStage.setScene(new Scene(root));
-            loginStage.setResizable(false);
-            loginStage.show();
+        mylogin();
     }
 
     private int getkey() throws SQLException {

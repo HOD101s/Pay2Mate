@@ -1,20 +1,16 @@
 package walletData.controllers;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-import walletData.Main;
 import walletData.Query.Execute;
+import walletData.Scenes.LayOut;
 import walletData.dbs.DBConnect;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class AdminController {
+public class AdminController extends LayOut{
 
     @FXML
     private TextField amount;
@@ -35,14 +31,7 @@ public class AdminController {
         }
     }
 
-
-
     public void openLogin() throws IOException{
-        Stage loginStage = Main.stage;
-        Parent root = FXMLLoader.load(getClass().getResource("/walletData/fxml/login.fxml"));
-        loginStage.setTitle("Login");
-        loginStage.setScene(new Scene(root));
-        loginStage.setResizable(false);
-        loginStage.show();
+        mylogin();
     }
 }

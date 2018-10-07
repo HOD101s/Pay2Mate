@@ -2,13 +2,9 @@ package walletData.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 import walletData.Query.Execute;
+import walletData.Scenes.LayOut;
 import walletData.dbs.DBConnect;
-import walletData.Main;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -19,7 +15,7 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class LoginController {
+public class LoginController extends LayOut{
 
     @FXML
     static GridPane root;
@@ -33,7 +29,7 @@ public class LoginController {
     @FXML
     private Label status;
 
-    static String loggeduser;
+    public static String loggeduser;
 
     @FXML
     void onLogin(ActionEvent event) {
@@ -54,22 +50,12 @@ public class LoginController {
 
     @FXML
     void onRegister(ActionEvent event) throws IOException {     //Stages register
-        Stage registerStage = Main.stage;
-        registerStage.setTitle("Register");
-        Parent root = FXMLLoader.load(getClass().getResource("/walletData/fxml/register.fxml"));
-        registerStage.setScene(new Scene(root));
-        registerStage.setResizable(false);
-        registerStage.show();
+        myregister();
     }
 
-    private void openAdmin() {
+    private void openAdmin(){
         try {
-            Stage adminStage = Main.stage;
-            adminStage.setTitle("ADMIN");
-            Parent root = FXMLLoader.load(getClass().getResource("/walletData/fxml/admin.fxml"));
-            adminStage.setScene(new Scene(root));
-            adminStage.setResizable(false);
-            adminStage.show();
+            myadmin();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -94,11 +80,6 @@ public class LoginController {
     }
 
     private void openHome() throws IOException{             //Stages Home
-        Stage registerStage = Main.stage;
-        registerStage.setTitle(loggeduser);
-        Parent root = FXMLLoader.load(getClass().getResource("/walletData/fxml/home.fxml"));
-        registerStage.setScene(new Scene(root));
-        registerStage.setResizable(false);
-        registerStage.show();
+        myhome();
     }
 }

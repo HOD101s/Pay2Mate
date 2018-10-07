@@ -2,25 +2,17 @@ package walletData.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 import walletData.Query.Execute;
+import walletData.Scenes.LayOut;
 import walletData.dbs.DBConnect;
-import walletData.Main;
 import walletData.dbs.Transactions;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class SendMyVerificationController {
-    @FXML
-    private AnchorPane root;
+public class SendMyVerificationController extends LayOut{
 
     @FXML
     private TextField publickey;
@@ -36,6 +28,8 @@ public class SendMyVerificationController {
 
     @FXML
     void onPay(ActionEvent event) {
+
+
         int vreturn = 0;
 
         try {       //verifies pubkey prikey and amount
@@ -65,12 +59,7 @@ public class SendMyVerificationController {
 
     @FXML
     void backHome(ActionEvent event) throws IOException {        //Stages Home
-        Stage homeStage = Main.stage;
-        root = FXMLLoader.load(getClass().getResource("/walletData/fxml/home.fxml"));
-        homeStage.setTitle(LoginController.loggeduser);
-        homeStage.setScene(new Scene(root));
-        homeStage.setResizable(false);
-        homeStage.show();
+        myhome();
     }
 
     private void TransactionTableInsert() throws SQLException {

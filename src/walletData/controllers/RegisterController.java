@@ -1,15 +1,10 @@
 package walletData.controllers;
 
 import javafx.fxml.FXML;
-import java.util.regex.*;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 import walletData.Query.Execute;
+import walletData.Scenes.LayOut;
 import walletData.dbs.DBConnect;
 import walletData.dbs.DBmethods;
-import walletData.Main;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -18,7 +13,8 @@ import javafx.scene.layout.GridPane;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class RegisterController {
+public class RegisterController extends LayOut{
+
     @FXML
     private GridPane root;
 
@@ -60,12 +56,7 @@ public class RegisterController {
 
     @FXML
     public void backToLogin() throws IOException {                                                             //Stages Login
-        Stage loginStage = Main.stage;
-        root = FXMLLoader.load(getClass().getResource("/walletData/fxml/login.fxml"));
-        loginStage.setTitle("Login");
-        loginStage.setScene(new Scene(root));
-        loginStage.setResizable(false);
-        loginStage.show();
+        mylogin();
     }
 
     private boolean passRegex(String pass) {

@@ -15,9 +15,7 @@ public class Transactions {
     private static int sendamount;
 
     public static int verification(int prikey, String user, int pubkey) throws SQLException {
-        ResultSet set =
-                DBConnect.getStatement()
-                        .executeQuery(String.format(Execute.priCheck,user,prikey));
+        ResultSet set = DBConnect.getStatement().executeQuery(String.format(Execute.priCheck,user,prikey));
         if (set.next()) {
             senderprivatekey = prikey;
             return pubkeyCheck(pubkey);
@@ -27,9 +25,7 @@ public class Transactions {
     }
 
     private static int pubkeyCheck(int pubkey) throws SQLException {
-        ResultSet set =
-                DBConnect.getStatement()
-                        .executeQuery(String.format(Execute.pubCheck,pubkey));
+        ResultSet set = DBConnect.getStatement().executeQuery(String.format(Execute.pubCheck,pubkey));
         if (set.next()) {
             receiverpublickey = pubkey;
             return 1;
@@ -56,19 +52,19 @@ public class Transactions {
     }
 
     public static boolean addMoney() throws SQLException {
-        int bal;
-        ResultSet mysetbal = DBConnect.getStatement().executeQuery(String.format(Execute.receiverBal,receiverpublickey));
-        if (mysetbal.next())
-            bal = mysetbal.getInt("balance");
-        else
-            bal = 0;
-        return (DBConnect.getStatement().executeUpdate(String.format(Execute.addMoney,bal + sendamount, receiverpublickey)) > 0);
+        return (DBConnect.getStatement().executeUpdate(String.format(Execute.addMoney,sendamount, receiverpublickey)) > 0);
     }
 
-    public static String genTransID() throws SQLException {
+    private static String genTimestamp(){
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         SimpleDateFormat sdf = new SimpleDateFormat("MMddHHmm");
-        String myTran = sdf.format(timestamp) + randomAlphaNumeric();
+        return  sdf.format(timestamp);
+    }
+
+    private static String tstamp = genTimestamp();
+
+    public static String genTransID() throws SQLException {
+        String myTran = tstamp + randomAlphaNumeric();
         if (checkTrans(myTran))
             return genTransID();
         else

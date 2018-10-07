@@ -1,6 +1,7 @@
 package walletData.controllers;
 
 import javafx.fxml.FXML;
+import java.util.regex.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -48,6 +49,8 @@ public class RegisterController {
                 publickeyLabel.setText("Passwords do not match");
             } else if (doesUserExist(regname.getText())) {
                 publickeyLabel.setText("User already exists");
+            } else if(!passRegex(regpassword.getText())){
+                publickeyLabel.setText("Password : at least 1 Special Character 1 Character 1 Digit");
             } else
                 registerUser(regname.getText(), regpassword.getText());
         } catch (SQLException e) {
@@ -63,6 +66,10 @@ public class RegisterController {
         loginStage.setScene(new Scene(root));
         loginStage.setResizable(false);
         loginStage.show();
+    }
+
+    private boolean passRegex(String pass) {
+        return pass.matches("^(?=.*[!@#$%^&*(),.?\":{}|<>])(?=.*[^a-zA-Z])(?=.*[0-9]).{4,8}$");
     }
 
     private boolean doesUserExist(String username) throws SQLException {                                        //test username availability

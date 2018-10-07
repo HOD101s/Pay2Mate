@@ -1,5 +1,4 @@
 package walletData;
-import java.util.Scanner;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

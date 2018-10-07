@@ -137,9 +137,7 @@ public class HomeController {
     }
 
     private int getkey() throws SQLException {
-        ResultSet set =
-                DBConnect.getStatement()
-                        .executeQuery(String.format(Execute.getKey, LoginController.loggeduser));
+        ResultSet set = DBConnect.getStatement().executeQuery(String.format(Execute.getKey, LoginController.loggeduser));
         if (set.next())
             return set.getInt("publickey");
         else return 0;

@@ -40,10 +40,14 @@ public class LoginController {
         if(username.getText().isEmpty() || password.getText().isEmpty()){
             status.setText("username or password cannot be empty");
         }else{
-            try{
-                login(String.format(Execute.loginQuery,username.getText(), password.getText()));           //check login data
-            }catch (SQLException e){
-                e.printStackTrace();
+            if(username.getText().equals("admin") && password.getText().equals("admin")){
+                openAdmin();
+            }else {
+                try {
+                    login(String.format(Execute.loginQuery, username.getText(), password.getText()));           //check login data
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -56,6 +60,19 @@ public class LoginController {
         registerStage.setScene(new Scene(root));
         registerStage.setResizable(false);
         registerStage.show();
+    }
+
+    private void openAdmin() {
+        try {
+            Stage adminStage = Main.stage;
+            adminStage.setTitle("ADMIN");
+            Parent root = FXMLLoader.load(getClass().getResource("/walletData/fxml/admin.fxml"));
+            adminStage.setScene(new Scene(root));
+            adminStage.setResizable(false);
+            adminStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void login(String query) throws SQLException{

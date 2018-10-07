@@ -16,16 +16,15 @@ public class Execute {
     public static final String pubCheck = "SELECT * from `userdata` WHERE `publickey` = '%d'";
     public static final String amountInBal = "SELECT `balance` from `userwallet` WHERE `privatekey` = '%s'";
     public static final String removeMoney = "UPDATE `userwallet` SET `balance` = '%d' WHERE `privatekey` = '%d'";
-    public static final String receiverBal = "SELECT `balance` FROM `userwallet` WHERE `publickey` = '%s'";
-    public static final String addMoney = "UPDATE `userwallet` SET `balance` = '%d' WHERE `publickey` = '%d'";
+    public static final String addMoney = "UPDATE `userwallet` SET `balance` = balance + %d WHERE `publickey` = '%d'";
     public static final String checkTransID = "SELECT * FROM `transaction` WHERE `transid` = '%s'";
 
     //setupdb
 
-    public static String createTransaction = "CREATE TABLE `pay2mate`.`transaction` ( `transid` VARCHAR(255) NOT NULL ,  `senderpub` INT(255) NOT NULL ,  `receiverpub` INT(255) NOT NULL ,  `amount` INT(11) NOT NULL ,  `time` VARCHAR(255) NOT NULL ,  `date` VARCHAR(255) NOT NULL ) ENGINE = InnoDB";
-    public static String createuserData = "CREATE TABLE `pay2mate`.`userdata` ( `publickey` INT(11) NOT NULL , `username` VARCHAR(255) NOT NULL , `password` VARCHAR(255) NOT NULL ) ENGINE = InnoDB";
-    public static String createuserwallet = "CREATE TABLE `pay2mate`.`userwallet` ( `publickey` INT(11) NOT NULL , `privatekey` INT(11) NOT NULL , `balance` INT(255) NOT NULL ) ENGINE = InnoDB";
-    public static String createPay2Mate = "CREATE DATABASE pay2mate";
-    public static String doesPay2MateExist = "show databases like 'pay2mate'";
-    public static String usePay2 = "USE pay2mate";
+    public static final String createTransaction = "CREATE TABLE `pay2mate`.`transaction` ( `transid` VARCHAR(255) NOT NULL ,  `senderpub` INT(255) NOT NULL ,  `receiverpub` INT(255) NOT NULL ,  `amount` INT(11) NOT NULL ,  `time` VARCHAR(255) NOT NULL ,  `date` VARCHAR(255) NOT NULL ) ENGINE = InnoDB";
+    public static final String createuserData = "CREATE TABLE `pay2mate`.`userdata` ( `publickey` INT(11) NOT NULL , `username` VARCHAR(255) NOT NULL , `password` VARCHAR(255) NOT NULL ) ENGINE = InnoDB";
+    public static final String createuserwallet = "CREATE TABLE `pay2mate`.`userwallet` ( `publickey` INT(11) NOT NULL , `privatekey` INT(11) NOT NULL , `balance` INT(255) NOT NULL ) ENGINE = InnoDB";
+    public static final String createPay2Mate = "CREATE DATABASE pay2mate";
+    public static final String doesPay2MateExist = "show databases like 'pay2mate'";
+    public static final String usePay2 = "USE pay2mate";
 }

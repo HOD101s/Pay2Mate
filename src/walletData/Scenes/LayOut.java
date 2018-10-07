@@ -10,51 +10,31 @@ import walletData.controllers.LoginController;
 import java.io.IOException;
 
 public class LayOut {
+
+    private void myMaster(String myURL , String name) throws IOException{
+        Stage mystage = Main.stage;
+        Parent root = FXMLLoader.load(getClass().getResource(myURL));
+        mystage.setTitle(name);
+        mystage.setScene(new Scene(root));
+        mystage.show();
+    }
     protected void mySend() throws IOException{
-        Stage sendMoneyStage = Main.stage;
-        Parent root = FXMLLoader.load(getClass().getResource("/walletData/fxml/sendVerification.fxml"));
-        sendMoneyStage.setTitle("Hello World");
-        sendMoneyStage.setScene(new Scene(root));
-        sendMoneyStage.show();
+        myMaster("/walletData/fxml/sendVerification.fxml","Send Money");
     }
 
     protected void mylogin() throws IOException{
-        Stage loginStage = Main.stage;
-        Parent root = FXMLLoader.load(getClass().getResource("/walletData/fxml/login.fxml"));
-        loginStage.setTitle("Login");
-        loginStage.setScene(new Scene(root));
-        loginStage.setResizable(false);
-        loginStage.show();
+        myMaster("/walletData/fxml/login.fxml","Login");
     }
 
     protected void myregister() throws IOException{
-        Stage registerStage = Main.stage;
-        registerStage.setTitle("Register");
-        Parent root = FXMLLoader.load(getClass().getResource("/walletData/fxml/register.fxml"));
-        registerStage.setScene(new Scene(root));
-        registerStage.setResizable(false);
-        registerStage.show();
+        myMaster("/walletData/fxml/register.fxml","Register");
     }
 
     protected void myadmin() throws IOException{
-        Stage adminStage = Main.stage;
-        adminStage.setTitle("ADMIN");
-        Parent root = FXMLLoader.load(getClass().getResource("/walletData/fxml/admin.fxml"));
-        adminStage.setScene(new Scene(root));
-        adminStage.setResizable(false);
-        adminStage.show();
+        myMaster("/walletData/fxml/admin.fxml","ADMIN");
     }
 
     protected void myhome() throws IOException{
-        Stage registerStage = Main.stage;
-        registerStage.setTitle(LoginController.loggeduser);
-        Parent root = FXMLLoader.load(getClass().getResource("/walletData/fxml/home.fxml"));
-        registerStage.setScene(new Scene(root));
-        registerStage.setResizable(false);
-        registerStage.show();
+        myMaster("/walletData/fxml/home.fxml",LoginController.loggeduser);
     }
-
-
-
-
 }

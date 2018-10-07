@@ -60,7 +60,7 @@ public class RegisterController extends LayOut{
     }
 
     private boolean passRegex(String pass) {
-        return pass.matches("^(?=.*[!@#$%^&*(),.?\":{}|<>])(?=.*[^a-zA-Z])(?=.*[0-9]).{4,8}$");
+        return pass.matches("^(?=.*[!@#$%^&*(),.?\":{}|<>])(?=.*[^a-zA-Z])(?=.*[0-9]).{4,}$");
     }
 
     private boolean doesUserExist(String username) throws SQLException {                                        //test username availability

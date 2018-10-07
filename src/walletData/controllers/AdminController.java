@@ -60,10 +60,10 @@ public class AdminController extends LayOut{
     public void adminMoney(){
         try {
             DBConnect.getStatement().executeUpdate(String.format(Execute.addMoney,Integer.parseInt(amount.getText()),Integer.parseInt(publicKey.getText())));
-            status.setText("Successful Transaction");
+            status.setText("Transaction Successful.");
         } catch (SQLException e) {
             e.printStackTrace();
-            status.setText("Could Not Complete Transaction");
+            status.setText("Transaction cannot be processed.");
         }
     }
 

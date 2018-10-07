@@ -1,5 +1,6 @@
 package walletData.controllers;
 
+import com.jfoenix.controls.JFXTextField;
 import javafx.application.Application;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -22,10 +23,10 @@ import java.util.List;
 public class AdminController extends LayOut{
 
     @FXML
-    private TextField amount;
+    private JFXTextField amount;
 
     @FXML
-    private TextField publicKey;
+    private JFXTextField publicKey;
 
     @FXML
     private Label status;

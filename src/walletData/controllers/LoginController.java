@@ -12,6 +12,7 @@ import javafx.scene.layout.GridPane;
 
 
 import java.io.IOException;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -40,7 +41,7 @@ public class LoginController extends LayOut{
                 openAdmin();
             }else {
                 try {
-                    login(String.format(Execute.loginQuery, username.getText(), password.getText()));           //check login data
+                    login();           //check login data
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -61,10 +62,11 @@ public class LoginController extends LayOut{
         }
     }
 
-    private void login(String query) throws SQLException{
-        ResultSet set =
-                DBConnect.getStatement()
-                        .executeQuery(query);
+    private void login() throws SQLException{
+        PreparedStatement login = DBConnect.getConn().prepareStatement(Execute.loginQuery);
+        login.setString(1,username.getText());
+        login.setString(2,password.getText());
+        ResultSet set = login.executeQuery();
         if(set.next()){
             loggeduser = username.getText();
             status.setText("Logged in !");

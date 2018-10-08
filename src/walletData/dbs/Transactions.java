@@ -2,6 +2,7 @@ package walletData.dbs;
 
 import walletData.Query.Execute;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -15,7 +16,10 @@ public class Transactions {
     private static int sendamount;
 
     public static int verification(int prikey, String user, int pubkey) throws SQLException {
-        ResultSet set = DBConnect.getStatement().executeQuery(String.format(Execute.priCheck,user,prikey));
+        PreparedStatement priCheck = DBConnect.getConn().prepareStatement(Execute.priCheck);
+        priCheck.setString(1,user);
+        priCheck.setInt(2,prikey);
+        ResultSet set = priCheck.executeQuery();
         if (set.next()) {
             senderprivatekey = prikey;
             return pubkeyCheck(pubkey);
@@ -25,7 +29,9 @@ public class Transactions {
     }
 
     private static int pubkeyCheck(int pubkey) throws SQLException {
-        ResultSet set = DBConnect.getStatement().executeQuery(String.format(Execute.pubCheck,pubkey));
+        PreparedStatement pubCheck = DBConnect.getConn().prepareStatement(Execute.pubCheck);
+        pubCheck.setInt(1,pubkey);
+        ResultSet set = pubCheck.executeQuery();
         if (set.next()) {
             receiverpublickey = pubkey;
             return 1;
@@ -35,7 +41,9 @@ public class Transactions {
     }
 
     public static boolean amountInBalance(int send, int prikey) throws SQLException {
-        ResultSet myBal = DBConnect.getStatement().executeQuery(String.format(Execute.amountInBal,prikey));
+        PreparedStatement amtInBal = DBConnect.getConn().prepareStatement(Execute.amountInBal);
+        amtInBal.setInt(1,prikey);
+        ResultSet myBal = amtInBal.executeQuery();
         myBal.next();
         int balance = myBal.getInt("balance");
         userBalance = balance;
@@ -48,11 +56,18 @@ public class Transactions {
     }
 
     public static boolean removeMoney() throws SQLException {
-        return (DBConnect.getStatement().executeUpdate(String.format(Execute.removeMoney,userBalance - sendamount, senderprivatekey)) > 0);
+        PreparedStatement remMoney = DBConnect.getConn().prepareStatement(Execute.removeMoney);
+        remMoney.setInt(1,userBalance - sendamount);
+        remMoney.setInt(2,senderprivatekey);
+        return (remMoney.executeUpdate()>0);
+//        return (DBConnect.getStatement().executeUpdate(String.format(Execute.removeMoney,userBalance - sendamount, senderprivatekey)) > 0);
     }
 
     public static boolean addMoney() throws SQLException {
-        return (DBConnect.getStatement().executeUpdate(String.format(Execute.addMoney,sendamount, receiverpublickey)) > 0);
+        PreparedStatement addMoney = DBConnect.getConn().prepareStatement(Execute.addMoney);
+        addMoney.setInt(1,sendamount);
+        addMoney.setInt(2,receiverpublickey);
+        return (addMoney.executeUpdate()>0);
     }
 
     private static String genTimestamp(){
@@ -84,7 +99,9 @@ public class Transactions {
     }
 
     private static boolean checkTrans(String s) throws SQLException {
-        return DBConnect.getStatement().executeQuery(String.format(Execute.checkTransID,s)).next();
+        PreparedStatement chTrId = DBConnect.getConn().prepareStatement(Execute.checkTransID);
+        chTrId.setString(1,s);
+        return chTrId.executeQuery().next();
     }
 
     public static String getTime() {

@@ -8,6 +8,7 @@ import walletData.dbs.DBConnect;
 import javafx.scene.control.Label;
 
 import java.io.IOException;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -128,14 +129,18 @@ public class HomeController extends LayOut {
     }
 
     public static int getkey() throws SQLException {
-        ResultSet set = DBConnect.getStatement().executeQuery(String.format(Execute.getKey, LoginController.loggeduser));
+        PreparedStatement getkey = DBConnect.getConn().prepareStatement(Execute.getKey);
+        getkey.setString(1,LoginController.loggeduser);
+        ResultSet set = getkey.executeQuery();
         if (set.next())
             return set.getInt("publickey");
         else return 0;
     }
 
     private String getbal(int mykey) throws SQLException {
-        ResultSet mysetbal = DBConnect.getStatement().executeQuery(String.format(Execute.getBal, mykey));
+        PreparedStatement getkey = DBConnect.getConn().prepareStatement(Execute.getBal);
+        getkey.setInt(1,mykey);
+        ResultSet mysetbal = getkey.executeQuery();
         if (mysetbal.next())
             return mysetbal.getString("balance");
         else
@@ -144,7 +149,9 @@ public class HomeController extends LayOut {
 
     private void setmyIds(String[] ids, String[] recpubs, String[] time, String[] amts, int mykey) throws SQLException {
         int count = 1;
-        ResultSet mySet = DBConnect.getStatement().executeQuery(String.format(Execute.setTable, mykey));
+        PreparedStatement getkey = DBConnect.getConn().prepareStatement(Execute.setTable);
+        getkey.setInt(1,mykey);
+        ResultSet mySet = getkey.executeQuery();
         mySet.last();
         ids[0] = mySet.getString("transid");
         recpubs[0] = mySet.getString("receiverpub");

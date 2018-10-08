@@ -8,6 +8,7 @@ import walletData.Scenes.LayOut;
 import walletData.dbs.DBConnect;
 
 import java.io.IOException;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class RequestController extends LayOut{
@@ -25,7 +26,10 @@ public class RequestController extends LayOut{
 
     @FXML
     public void submitReq() throws SQLException{
-        DBConnect.getStatement().execute(String.format(Execute.adminInsert,HomeController.getkey(),Integer.parseInt(amount.getText())));
+        PreparedStatement adminInsert = DBConnect.getConn().prepareStatement(Execute.adminInsert);
+        adminInsert.setInt(1,HomeController.getkey());
+        adminInsert.setInt(2,Integer.parseInt(amount.getText()));
+        adminInsert.executeUpdate();
         status.setText("Successful Request");
     }
 }

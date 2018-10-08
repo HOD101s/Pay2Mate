@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class RegisterController extends LayOut{
@@ -64,14 +65,27 @@ public class RegisterController extends LayOut{
     }
 
     private boolean doesUserExist(String username) throws SQLException {                                        //test username availability
-        return DBConnect.getStatement().executeQuery(String.format(Execute.userExists, username)).next();
+        PreparedStatement userExists = DBConnect.getConn().prepareStatement(Execute.userExists);
+        userExists.setString(1,username);
+        return userExists.executeQuery().next();
     }
 
-    private void registerUser(String username, String password) throws SQLException {        //adds user to dbtable
+    private void registerUser(String username, String password) throws SQLException {
+        //adds user to dbtable
         int pubkey = DBmethods.genPubKey();
         int prikey = DBmethods.genPriKey();
-        DBConnect.getStatement().executeUpdate(String.format(Execute.insertUserData, pubkey, username, password));
-        DBConnect.getStatement().executeUpdate(String.format(Execute.insertUserWallet, pubkey, prikey, 10000));
+        PreparedStatement inUserData = DBConnect.getConn().prepareStatement(Execute.insertUserData);
+        inUserData.setInt(1,pubkey);
+        inUserData.setString(2,username);
+        inUserData.setString(3,password);
+        inUserData.executeUpdate();
+
+        PreparedStatement inUserWall = DBConnect.getConn().prepareStatement(Execute.insertUserWallet);
+        inUserWall.setInt(1,pubkey);
+        inUserWall.setInt(2,prikey);
+        inUserWall.setInt(3,10000);
+        inUserWall.executeUpdate();
+
         usernameLabel.setText(String.format(("Welcome %s"), username));
         publickeyLabel.setText(String.format(("Public Key : %d"), pubkey));
         privatekeyLabel.setText(String.format(("Private Key : %d"), prikey));

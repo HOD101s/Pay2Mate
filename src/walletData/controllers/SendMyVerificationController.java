@@ -9,6 +9,7 @@ import walletData.dbs.Transactions;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import java.io.IOException;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -63,12 +64,20 @@ public class SendMyVerificationController extends LayOut{
     }
 
     private void TransactionTableInsert() throws SQLException {
-        DBConnect.getStatement().executeUpdate(String.format(Execute.transTableInsert, Transactions.genTransID(), getsenderpub(),
-                Integer.parseInt(publickey.getText()), Integer.parseInt(sendAmount.getText()), Transactions.getTime(), Transactions.getDate()));
+        PreparedStatement transTable = DBConnect.getConn().prepareStatement(Execute.transTableInsert);
+        transTable.setString(1,Transactions.genTransID());
+        transTable.setString(2,getsenderpub());
+        transTable.setInt(3,Integer.parseInt(publickey.getText()));
+        transTable.setInt(4,Integer.parseInt(sendAmount.getText()));
+        transTable.setString(5,Transactions.getTime());
+        transTable.setString(6,Transactions.getDate());
+        transTable.executeUpdate();
     }
 
     private String getsenderpub() throws SQLException {
-        ResultSet sendSet = DBConnect.getStatement().executeQuery(String.format(Execute.getSenderPub, privatekey.getText()));
+        PreparedStatement getSenderPub = DBConnect.getConn().prepareStatement(Execute.getSenderPub);
+        getSenderPub.setString(1,privatekey.getText());
+        ResultSet sendSet = getSenderPub.executeQuery();
         if (sendSet.next())
             return sendSet.getString("publickey");
         else

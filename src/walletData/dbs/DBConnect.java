@@ -22,6 +22,10 @@ public class DBConnect {
         }
     }
 
+    public static Connection getConn(){
+        return connection;
+    }
+
     public static Statement getStatement() {
         return statement;
     }

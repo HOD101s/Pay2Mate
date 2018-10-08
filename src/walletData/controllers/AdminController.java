@@ -1,7 +1,5 @@
 package walletData.controllers;
 
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,6 +15,7 @@ import walletData.dbs.DBConnect;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -37,7 +36,10 @@ public class AdminController extends LayOut{
 
     public void adminMoney(){
         try {
-            DBConnect.getStatement().executeUpdate(String.format(Execute.addMoney,Integer.parseInt(amount.getText()),Integer.parseInt(publicKey.getText())));
+            PreparedStatement addMoney = DBConnect.getConn().prepareStatement(Execute.addMoney);
+            addMoney.setInt(1,Integer.parseInt(amount.getText()));
+            addMoney.setInt(2,Integer.parseInt(publicKey.getText()));
+            addMoney.executeUpdate();
             status.setText("Transaction Successful.");
         } catch (SQLException e) {
             e.printStackTrace();

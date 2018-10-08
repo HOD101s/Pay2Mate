@@ -58,7 +58,7 @@
                 <Font name="System Bold" size="25.0" />
             </font>
         </Label>
-        <Label fx:id="trans1" layoutX="454.0" layoutY="234.0" prefHeight="34.0" prefWidth="193.0">
+        <Label fx:id="trans1" layoutX="440.0" layoutY="234.0" prefHeight="34.0" prefWidth="200.0">
             <font>
                 <Font size="23.0" />
             </font>
@@ -73,7 +73,7 @@
                 <Font size="22.0" />
             </font>
         </Label>
-        <Label fx:id="trans2" layoutX="454.0" layoutY="295.0" prefHeight="32.0" prefWidth="193.0">
+        <Label fx:id="trans2" layoutX="440.0" layoutY="295.0" prefHeight="32.0" prefWidth="200.0">
             <font>
                 <Font size="22.0" />
             </font>
@@ -88,7 +88,7 @@
                 <Font size="22.0" />
             </font>
         </Label>
-        <Label fx:id="trans3" layoutX="454.0" layoutY="356.0" prefHeight="32.0" prefWidth="193.0">
+        <Label fx:id="trans3" layoutX="440.0" layoutY="356.0" prefHeight="32.0" prefWidth="200.0">
             <font>
                 <Font size="22.0" />
             </font>
@@ -103,7 +103,7 @@
                 <Font size="22.0" />
             </font>
         </Label>
-        <Label fx:id="trans4" layoutX="454.0" layoutY="405.0" prefHeight="32.0" prefWidth="193.0">
+        <Label fx:id="trans4" layoutX="440.0" layoutY="405.0" prefHeight="32.0" prefWidth="200.0">
             <font>
                 <Font size="22.0" />
             </font>
@@ -118,7 +118,7 @@
                 <Font size="22.0" />
             </font>
         </Label>
-        <Label fx:id="trans5" layoutX="461.0" layoutY="466.0" prefHeight="32.0" prefWidth="193.0">
+        <Label fx:id="trans5" layoutX="440.0" layoutY="466.0" prefHeight="32.0" prefWidth="200.0">
             <font>
                 <Font size="22.0" />
             </font>

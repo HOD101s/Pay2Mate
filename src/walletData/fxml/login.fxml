@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -24,8 +25,8 @@
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="81.0" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="81.0" minHeight="10.0" prefHeight="81.0" vgrow="SOMETIMES" />
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -33,8 +34,8 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d7d2d2" height="91.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1026.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e86d66" height="81.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1026.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d7d2d2" height="91.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1053.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e86d66" height="81.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1047.0" />
       <Label text="Login" textFill="#e86d66" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
          <font>
             <Font name="System Bold" size="49.0" />
@@ -55,20 +56,26 @@
          <font>
             <Font size="20.0" />
          </font></JFXTextField>
-      <JFXButton fx:id="login" buttonType="RAISED" onAction="#onLogin" prefHeight="69.0" prefWidth="156.0" ripplerFill="WHITE" style="-fx-background-color: #ffea00; -fx-background-radius: 100;" text="Login" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="4">
-         <font>
-            <Font size="32.0" />
-         </font>
-      </JFXButton>
-      <JFXButton fx:id="register" buttonType="RAISED" onAction="#onRegister" ripplerFill="BLACK" style="-fx-background-color: #ffea00; -fx-background-radius: 100;" text="Register" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="4">
-         <font>
-            <Font size="32.0" />
-         </font>
-      </JFXButton>
       <JFXPasswordField fx:id="password" focusColor="RED" labelFloat="true" promptText="Password" unFocusColor="#e86d66" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="3">
          <font>
             <Font size="20.0" />
          </font>
       </JFXPasswordField>
+      <JFXButton fx:id="login" buttonType="RAISED" onAction="#onLogin" prefHeight="69.0" prefWidth="156.0" ripplerFill="WHITE" style="-fx-background-color: #ffea00; -fx-background-radius: 100;" text="Login" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="4">
+         <font>
+            <Font size="32.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="register" buttonType="RAISED" onAction="#onRegister" ripplerFill="BLACK" style="-fx-background-color: #ffea00; -fx-background-radius: 100;" text="Register" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="4">
+         <font>
+            <Font size="32.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
    </children>
 </GridPane>

@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -48,14 +49,14 @@
             <Font size="29.0" />
          </font>
       </Label>
-      <Label fx:id="privatekeyLabel" GridPane.columnIndex="1" GridPane.columnSpan="6" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+      <Label fx:id="privatekeyLabel" GridPane.columnIndex="3" GridPane.columnSpan="5" GridPane.halignment="CENTER" GridPane.rowIndex="7">
          <font>
-            <Font size="25.0" />
+            <Font size="29.0" />
          </font>
       </Label>
       <Label fx:id="usernameLabel" GridPane.columnIndex="1" GridPane.columnSpan="6" GridPane.halignment="CENTER">
          <font>
-            <Font size="30.0" />
+            <Font size="32.0" />
          </font>
       </Label>
       <JFXTextField fx:id="regname" labelFloat="true" promptText="Username" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="2">
@@ -77,11 +78,17 @@
          <font>
             <Font size="29.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </JFXButton>
       <JFXButton buttonType="RAISED" onAction="#backToLogin" style="-fx-background-radius: 100; -fx-background-color: #76ff03;" text="Go to Login" GridPane.columnIndex="5" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="5">
          <font>
             <Font size="29.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </JFXButton>
    </children>
 </GridPane>

@@ -1,8 +1,8 @@
 package walletData.controllers;
 
+import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import walletData.Query.Execute;
 import walletData.Scenes.LayOut;
 import walletData.dbs.DBConnect;
@@ -14,7 +14,7 @@ import java.sql.SQLException;
 public class RequestController extends LayOut{
 
     @FXML
-    private TextField amount;
+    private JFXTextField amount;
 
     @FXML
     private Label status;

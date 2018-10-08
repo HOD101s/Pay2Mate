@@ -1,13 +1,13 @@
 package walletData.controllers;
 
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import walletData.Query.Execute;
 import walletData.Scenes.LayOut;
 import walletData.dbs.DBConnect;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
 
@@ -21,10 +21,10 @@ public class LoginController extends LayOut{
     static GridPane root;
 
     @FXML
-    private TextField username;
+    private JFXTextField username;
 
     @FXML
-    private PasswordField password;
+    private JFXPasswordField password;
 
     @FXML
     private Label status;

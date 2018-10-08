@@ -1,13 +1,13 @@
 package walletData.controllers;
 
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import walletData.Query.Execute;
 import walletData.Scenes.LayOut;
 import walletData.dbs.DBConnect;
 import walletData.dbs.DBmethods;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
@@ -19,13 +19,13 @@ public class RegisterController extends LayOut{
     private GridPane root;
 
     @FXML
-    private TextField regname;
+    private JFXTextField regname;
 
     @FXML
-    private PasswordField regpassword;
+    private JFXPasswordField regpassword;
 
     @FXML
-    private PasswordField regconpassword;
+    private JFXPasswordField regconpassword;
 
     @FXML
     private Label publickeyLabel;

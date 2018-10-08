@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -50,9 +51,11 @@
             <Font size="27.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="username" focusColor="RED" labelFloat="true" promptText="Username" unFocusColor="#e86d66" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="2" />
-      <JFXTextField fx:id="password" focusColor="RED" labelFloat="true" promptText="Password" unFocusColor="#e86d66" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="3" />
-      <JFXButton fx:id="login" buttonType="RAISED" onAction="#onLogin" prefHeight="69.0" prefWidth="156.0" ripplerFill="BLACK" style="-fx-background-color: #ffea00; -fx-background-radius: 100;" text="Login" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="4">
+      <JFXTextField fx:id="username" focusColor="RED" labelFloat="true" promptText="Username" unFocusColor="#e86d66" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="2">
+         <font>
+            <Font size="20.0" />
+         </font></JFXTextField>
+      <JFXButton fx:id="login" buttonType="RAISED" onAction="#onLogin" prefHeight="69.0" prefWidth="156.0" ripplerFill="WHITE" style="-fx-background-color: #ffea00; -fx-background-radius: 100;" text="Login" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="4">
          <font>
             <Font size="32.0" />
          </font>
@@ -62,5 +65,10 @@
             <Font size="32.0" />
          </font>
       </JFXButton>
+      <JFXPasswordField fx:id="password" focusColor="RED" labelFloat="true" promptText="Password" unFocusColor="#e86d66" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="3">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </JFXPasswordField>
    </children>
 </GridPane>

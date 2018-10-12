@@ -64,7 +64,6 @@ public class AdminController extends LayOut {
             }
         }
         ArrayList<ModelTable> foo = new ArrayList<ModelTable>(req);
-        System.out.println(foo);
         Iterator<ModelTable> it = foo.iterator();
         while (it.hasNext()) {
             ModelTable r = it.next();

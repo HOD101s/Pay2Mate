@@ -2,6 +2,7 @@ package walletData.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -13,6 +14,8 @@ import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class AdminController extends LayOut {
 
@@ -37,6 +40,8 @@ public class AdminController extends LayOut {
     @FXML
     private TableColumn<ModelTable, CheckBox> update;
 
+    ObservableList<ModelTable> data;
+
     @FXML
     void initialize() {
         tpublickey.setCellValueFactory(new PropertyValueFactory<ModelTable, String>("publickey"));
@@ -50,9 +55,37 @@ public class AdminController extends LayOut {
         }
     }
 
-    private ObservableList<ModelTable> data;
+    @FXML
+    void delRequest(ActionEvent event) {
+        ObservableList<ModelTable> req = FXCollections.observableArrayList();
+        for (ModelTable bean : data) {
+            if (bean.getUpdate().isSelected()) {
+                req.add(bean);
+            }
+        }
+        ArrayList<ModelTable> foo = new ArrayList<ModelTable>(req);
+        System.out.println(foo);
+        Iterator<ModelTable> it = foo.iterator();
+        while (it.hasNext()) {
+            ModelTable r = it.next();
+            remReq(r.getPublickey(), r.getRequest());
+        }
+        data.removeAll(req);
+    }
 
-    public void buildData() throws SQLException {
+    private void remReq(String pkey, String reqamt) {
+        try {
+            PreparedStatement delReq = DBConnect.getConn().prepareStatement(Execute.delReq);
+            delReq.setString(1, pkey);
+            delReq.setString(2, reqamt);
+            delReq.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void buildData() throws SQLException {
         data = FXCollections.observableArrayList();
         PreparedStatement build = DBConnect.getConn().prepareStatement(Execute.pubreqinsert);
         ResultSet rs = build.executeQuery();

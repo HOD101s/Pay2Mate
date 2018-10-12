@@ -3,24 +3,18 @@ package walletData.controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import walletData.Query.Execute;
 import walletData.Scenes.LayOut;
 import walletData.dbs.DBConnect;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
 
-public class AdminController extends LayOut{
+public class AdminController extends LayOut {
 
     @FXML
     private TextField amount;
@@ -31,14 +25,51 @@ public class AdminController extends LayOut{
     @FXML
     private Label status;
 
-    TableController tb = new TableController();
+    @FXML
+    private TableView<ModelTable> tableview;
 
+    @FXML
+    private TableColumn<ModelTable, String> tpublickey;
 
-    public void adminMoney(){
+    @FXML
+    private TableColumn<ModelTable, String> trequest;
+
+    @FXML
+    private TableColumn<ModelTable, CheckBox> update;
+
+    @FXML
+    void initialize() {
+        tpublickey.setCellValueFactory(new PropertyValueFactory<ModelTable, String>("publickey"));
+        trequest.setCellValueFactory(new PropertyValueFactory<ModelTable, String>("request"));
+        update.setCellValueFactory(new PropertyValueFactory<ModelTable, CheckBox>("update"));
+
+        try {
+            buildData();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private ObservableList<ModelTable> data;
+
+    public void buildData() throws SQLException {
+        data = FXCollections.observableArrayList();
+        PreparedStatement build = DBConnect.getConn().prepareStatement(Execute.pubreqinsert);
+        ResultSet rs = build.executeQuery();
+        while (rs.next()) {
+            ModelTable mt = new ModelTable();
+            mt.publickey.set(rs.getString("publickey"));
+            mt.request.set(rs.getString("request"));
+            data.add(mt);
+        }
+        tableview.setItems(data);
+    }
+
+    public void adminMoney() {
         try {
             PreparedStatement addMoney = DBConnect.getConn().prepareStatement(Execute.addMoney);
-            addMoney.setInt(1,Integer.parseInt(amount.getText()));
-            addMoney.setInt(2,Integer.parseInt(publicKey.getText()));
+            addMoney.setInt(1, Integer.parseInt(amount.getText()));
+            addMoney.setInt(2, Integer.parseInt(publicKey.getText()));
             addMoney.executeUpdate();
             status.setText("Transaction Successful.");
         } catch (SQLException e) {
@@ -47,41 +78,8 @@ public class AdminController extends LayOut{
         }
     }
 
-    public void openLogin() throws IOException{
+    public void openLogin() throws IOException {
         mylogin();
-    }
-}
-
-class TableController implements Initializable{
-
-    @FXML
-    private TableView<ModelTable> myTable;
-
-
-    TableColumn<ModelTable,String> tpublickey;
-
-
-    TableColumn<ModelTable,String> trequest;
-
-    ObservableList<ModelTable> oblist = FXCollections.observableArrayList();
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-        try {
-            ResultSet adTable = DBConnect.getStatement().executeQuery(Execute.pubreqinsert);
-            adTable.last();
-            while(adTable.previous()){
-                oblist.add(new ModelTable(adTable.getString("publickey"),adTable.getString("request")));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        tpublickey.setCellFactory(new PropertyValueFactory("publickey"));
-        trequest.setCellFactory(new PropertyValueFactory("request"));
-
-        myTable.setItems(oblist);
     }
 }
 

@@ -4,6 +4,8 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -54,5 +56,12 @@
             <Font name="Utsaah Bold" size="45.0" />
          </font>
       </Label>
+      <TableView fx:id="tableview" layoutX="257.0" layoutY="418.0" prefHeight="169.0" prefWidth="436.0">
+        <columns>
+          <TableColumn fx:id="tpublickey" prefWidth="148.0" text="Public Key" />
+          <TableColumn fx:id="trequest" minWidth="0.0" prefWidth="142.0" text="Request" />
+            <TableColumn fx:id="update" prefWidth="145.0" text="Update" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

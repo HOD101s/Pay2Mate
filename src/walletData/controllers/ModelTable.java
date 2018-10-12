@@ -1,27 +1,44 @@
 package walletData.controllers;
 
-public class ModelTable{
 
-    String tpublickey, trequest;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.control.CheckBox;
 
-    public ModelTable(String tpublickey, String trequest) {
-        this.tpublickey = tpublickey;
-        this.trequest = trequest;
+public class ModelTable {
+    public SimpleStringProperty publickey = new SimpleStringProperty();
+    public SimpleStringProperty request = new SimpleStringProperty();
+    public CheckBox update = new CheckBox();
+
+    public CheckBox getUpdate() {
+        return update;
     }
 
-    public String getTpublickey() {
-        return tpublickey;
+    public void setUpdate(CheckBox update) {
+        this.update = update;
     }
 
-    public void setTpublickey(String tpublickey) {
-        this.tpublickey = tpublickey;
+
+    public String getPublickey() {
+        return publickey.get();
     }
 
-    public String getTrequest() {
-        return trequest;
+    public SimpleStringProperty publickeyProperty() {
+        return publickey;
     }
 
-    public void setTrequest(String trequest) {
-        this.trequest = trequest;
+    public void setPublickey(String publickey) {
+        this.publickey.set(publickey);
+    }
+
+    public String getRequest() {
+        return request.get();
+    }
+
+    public SimpleStringProperty requestProperty() {
+        return request;
+    }
+
+    public void setRequest(String request) {
+        this.request.set(request);
     }
 }

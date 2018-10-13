@@ -4,8 +4,8 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class hashString {
-    public static String hashstring(String password){
+public class HashString {
+    public static String hashString(String password){
 
         StringBuilder sb = new StringBuilder();
         try {

@@ -16,7 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import static walletData.encryption.hashString.hashstring;
+import static walletData.encryption.HashString.hashString;
 
 public class LoginController extends LayOut{
 
@@ -67,7 +67,7 @@ public class LoginController extends LayOut{
     private void login() throws SQLException{
         PreparedStatement login = DBConnect.getConn().prepareStatement(Execute.loginQuery);
         login.setString(1,username.getText());
-        login.setString(2,hashstring(password.getText()));
+        login.setString(2, hashString(password.getText()));
         ResultSet set = login.executeQuery();
         if(set.next()){
             loggeduser = username.getText();

@@ -70,6 +70,11 @@ public class AdminController extends LayOut {
             remReq(r.getPublickey(), r.getRequest());
         }
         data.removeAll(req);
+        try {
+            myadmin();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void remReq(String pkey, String reqamt) {
@@ -103,6 +108,7 @@ public class AdminController extends LayOut {
             addMoney.setInt(1, Integer.parseInt(amount.getText()));
             addMoney.setInt(2, Integer.parseInt(publicKey.getText()));
             addMoney.executeUpdate();
+            remReq(publicKey.getText(),amount.getText());
             status.setText("Transaction Successful.");
         } catch (SQLException e) {
             e.printStackTrace();

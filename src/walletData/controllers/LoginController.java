@@ -16,6 +16,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import static walletData.encryption.hashString.hashstring;
+
 public class LoginController extends LayOut{
 
     @FXML
@@ -35,7 +37,7 @@ public class LoginController extends LayOut{
     @FXML
     void onLogin(ActionEvent event) {
         if(username.getText().isEmpty() || password.getText().isEmpty()){
-            status.setText("username or password cannot be empty");
+            status.setText("Username or Password cannot be empty");
         }else{
             if(username.getText().equals("admin") && password.getText().equals("admin")){
                 openAdmin();
@@ -65,7 +67,7 @@ public class LoginController extends LayOut{
     private void login() throws SQLException{
         PreparedStatement login = DBConnect.getConn().prepareStatement(Execute.loginQuery);
         login.setString(1,username.getText());
-        login.setString(2,password.getText());
+        login.setString(2,hashstring(password.getText()));
         ResultSet set = login.executeQuery();
         if(set.next()){
             loggeduser = username.getText();

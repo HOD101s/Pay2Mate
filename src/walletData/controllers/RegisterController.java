@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import static walletData.encryption.hashString.hashstring;
+
 public class RegisterController extends LayOut{
 
     @FXML
@@ -77,7 +79,7 @@ public class RegisterController extends LayOut{
         PreparedStatement inUserData = DBConnect.getConn().prepareStatement(Execute.insertUserData);
         inUserData.setInt(1,pubkey);
         inUserData.setString(2,username);
-        inUserData.setString(3,password);
+        inUserData.setString(3,hashstring(password));
         inUserData.executeUpdate();
 
         PreparedStatement inUserWall = DBConnect.getConn().prepareStatement(Execute.insertUserWallet);

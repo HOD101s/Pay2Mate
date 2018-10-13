@@ -21,7 +21,7 @@
          <font>
             <Font size="26.0" />
          </font></Label>
-      <Label fx:id="status" layoutX="274.0" layoutY="418.0" prefHeight="38.0" prefWidth="321.0">
+      <Label fx:id="status" layoutX="344.0" layoutY="378.0" prefHeight="38.0" prefWidth="362.0">
          <font>
             <Font size="26.0" />
          </font></Label>
@@ -35,7 +35,7 @@
             <Font size="20.0" />
          </font>
       </JFXTextField>
-      <JFXButton buttonType="RAISED" layoutX="433.0" layoutY="332.0" onAction="#adminMoney" ripplerFill="BLACK" style="-fx-background-color: #d500f9; -fx-background-radius: 100;" text="Add Money" textFill="WHITE">
+      <JFXButton buttonType="RAISED" layoutX="433.0" layoutY="298.0" onAction="#adminMoney" ripplerFill="BLACK" style="-fx-background-color: #d500f9; -fx-background-radius: 100;" text="Add Money" textFill="WHITE">
          <font>
             <Font size="29.0" />
          </font>
@@ -56,7 +56,7 @@
             <Font name="Utsaah Bold" size="45.0" />
          </font>
       </Label>
-      <TableView fx:id="tableview" layoutX="257.0" layoutY="418.0" prefHeight="169.0" prefWidth="436.0">
+      <TableView fx:id="tableview" layoutX="295.0" layoutY="425.0" prefHeight="169.0" prefWidth="436.0">
         <columns>
           <TableColumn fx:id="tpublickey" prefWidth="148.0" text="Public Key" />
           <TableColumn fx:id="trequest" minWidth="0.0" prefWidth="142.0" text="Request" />

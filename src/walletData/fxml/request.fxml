@@ -18,9 +18,9 @@
          <font>
             <Font name="System Bold" size="36.0" />
          </font></Label>
-      <Label fx:id="status" layoutX="222.0" layoutY="438.0" prefHeight="39.0" prefWidth="595.0">
+      <Label fx:id="status" layoutX="344.0" layoutY="437.0" prefHeight="39.0" prefWidth="435.0">
          <font>
-            <Font size="27.0" />
+            <Font size="30.0" />
          </font></Label>
       <JFXTextField fx:id="amount" labelFloat="true" layoutX="537.0" layoutY="188.0" promptText="Amount">
          <font>

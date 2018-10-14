@@ -31,5 +31,5 @@ public class Execute {
     public static final String createPay2Mate = "CREATE DATABASE pay2mate";
     public static final String doesPay2MateExist = "show databases like 'pay2mate'";
     public static final String usePay2 = "USE pay2mate";
-    public static final String adminReq = "CREATE TABLE `pay2mate`.`adminreq` ( `publickey` VARCHAR(255) NOT NULL , `request` VARCHAR(255) NOT NULL ) ENGINE = InnoDB";
+    public static final String adminReq = "CREATE TABLE `pay2mate`.`adminreq` ( `requestID` INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT ,`publickey` VARCHAR(255) NOT NULL , `request` VARCHAR(255) NOT NULL ) ENGINE = InnoDB";
 }

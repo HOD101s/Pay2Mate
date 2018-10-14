@@ -6,7 +6,7 @@ public class Execute {
     public static final String setTable = "SELECT `transid`,`senderpub`,`receiverpub`,`time`,`amount` FROM `userdata` JOIN `transaction` ON `publickey` = `senderpub` WHERE `senderpub`=?";
     public static final String loginQuery = "SELECT * FROM `userdata` WHERE `username` = ? && `password` = ?";
     public static final String userExists = "SELECT * FROM `userdata` WHERE username = ?";
-    public static final String insertUserData = "INSERT INTO `userdata` (`publickey`,`username`,`password`) VALUES (?,?,?)";
+    public static final String insertUserData = "INSERT INTO `userdata` (`accType`,`publickey`,`username`,`password`) VALUES (\'0\',?,?,?)";
     public static final String insertUserWallet = "INSERT INTO `userwallet` (`publickey`,`privatekey`,`balance`) VALUES (?,?,?)";
     public static final String transTableInsert = "INSERT INTO `transaction` (`transid`,`senderpub`,`receiverpub`,`amount`,`time`,`date`) VALUES (?,?,?,?,?,?)";
     public static final String getSenderPub = "SELECT * FROM `userwallet` WHERE `privatekey` = ?";
@@ -26,10 +26,11 @@ public class Execute {
 
     //setupdbs
     public static final String createTransaction = "CREATE TABLE `pay2mate`.`transaction` ( `transid` VARCHAR(255) NOT NULL ,  `senderpub` INT(255) NOT NULL ,  `receiverpub` INT(255) NOT NULL ,  `amount` INT(11) NOT NULL ,  `time` VARCHAR(255) NOT NULL ,  `date` VARCHAR(255) NOT NULL ) ENGINE = InnoDB";
-    public static final String createuserData = "CREATE TABLE `pay2mate`.`userdata` ( `publickey` INT(11) NOT NULL , `username` VARCHAR(255) NOT NULL , `password` VARCHAR(255) NOT NULL ) ENGINE = InnoDB";
+    public static final String createuserData = "CREATE TABLE `pay2mate`.`userdata` ( `accType` INT(11) NOT NULL ,`publickey` INT(11) NOT NULL , `username` VARCHAR(255) NOT NULL , `password` VARCHAR(255) NOT NULL ) ENGINE = InnoDB";
     public static final String createuserwallet = "CREATE TABLE `pay2mate`.`userwallet` ( `publickey` INT(11) NOT NULL , `privatekey` INT(11) NOT NULL , `balance` INT(255) NOT NULL ) ENGINE = InnoDB";
     public static final String createPay2Mate = "CREATE DATABASE pay2mate";
     public static final String doesPay2MateExist = "show databases like 'pay2mate'";
     public static final String usePay2 = "USE pay2mate";
     public static final String adminReq = "CREATE TABLE `pay2mate`.`adminreq` ( `requestID` INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT ,`publickey` VARCHAR(255) NOT NULL , `request` VARCHAR(255) NOT NULL ) ENGINE = InnoDB";
+    public static final String admin = "INSERT INTO `userdata` (`accType`, `publickey`, `username`, `password`) VALUES (\'1\', \'000000\', \'admin\', \'21232f297a57a5a743894a0e4a801fc3\')";
 }

@@ -18,7 +18,7 @@ import java.sql.SQLException;
 
 import static walletData.encryption.HashString.hashString;
 
-public class LoginController extends LayOut{
+public class LoginController extends LayOut {
 
     @FXML
     static GridPane root;
@@ -36,17 +36,13 @@ public class LoginController extends LayOut{
 
     @FXML
     void onLogin(ActionEvent event) {
-        if(username.getText().isEmpty() || password.getText().isEmpty()){
+        if (username.getText().isEmpty() || password.getText().isEmpty()) {
             status.setText("Username or Password cannot be empty");
-        }else{
-            if(username.getText().equals("admin") && password.getText().equals("admin")){
-                openAdmin();
-            }else {
-                try {
-                    login();           //check login data
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+        } else {
+            try {
+                login();           //check login data
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -56,7 +52,7 @@ public class LoginController extends LayOut{
         myregister();
     }
 
-    private void openAdmin(){
+    private void openAdmin() {
         try {
             myadmin();
         } catch (IOException e) {
@@ -64,26 +60,30 @@ public class LoginController extends LayOut{
         }
     }
 
-    private void login() throws SQLException{
+    private void login() throws SQLException {
         PreparedStatement login = DBConnect.getConn().prepareStatement(Execute.loginQuery);
-        login.setString(1,username.getText());
+        login.setString(1, username.getText());
         login.setString(2, hashString(password.getText()));
         ResultSet set = login.executeQuery();
-        if(set.next()){
-            loggeduser = username.getText();
-            status.setText("Logged in !");
-            try {
-                openHome();                             //openHome on login
-            } catch (IOException e) {
-                e.printStackTrace();
+        if (set.next()) {
+            if ((set.getInt("accType")) == 1) {
+                openAdmin();
+            } else {
+                loggeduser = username.getText();
+                status.setText("Logged in !");
+                try {
+                    openHome();                             //openHome on login
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
-        }else{
+        } else {
             status.setText("Incorrect username or password");
         }
         set.close();
     }
 
-    private void openHome() throws IOException{             //Stages Home
+    private void openHome() throws IOException {             //Stages Home
         myhome();
     }
 }

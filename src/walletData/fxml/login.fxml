@@ -34,8 +34,8 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d7d2d2" height="91.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1053.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e86d66" height="81.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1047.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d7d2d2" height="91.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1057.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e86d66" height="81.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1055.0" />
       <Label text="Login" textFill="#e86d66" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
          <font>
             <Font name="System Bold" size="49.0" />
@@ -61,7 +61,7 @@
             <Font size="20.0" />
          </font>
       </JFXPasswordField>
-      <JFXButton fx:id="login" buttonType="RAISED" onAction="#onLogin" prefHeight="69.0" prefWidth="156.0" ripplerFill="WHITE" style="-fx-background-color: #ffea00; -fx-background-radius: 100;" text="Login" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="4">
+      <JFXButton fx:id="login" buttonType="RAISED" onAction="#onLogin" prefHeight="69.0" prefWidth="156.0" ripplerFill="BLACK" style="-fx-background-color: #ffea00; -fx-background-radius: 100;" text="Login" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="4">
          <font>
             <Font size="32.0" />
          </font>

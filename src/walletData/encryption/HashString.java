@@ -7,6 +7,7 @@ import java.security.NoSuchAlgorithmException;
 public class HashString {
     public static String hashString(String password){
 
+        password="669ac26812e8cc29ec3a6d82e0a0e342"+password;
         StringBuilder sb = new StringBuilder();
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");

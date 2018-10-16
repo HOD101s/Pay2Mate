@@ -63,7 +63,7 @@ public class LoginController extends LayOut {
     private void login() throws SQLException {
         PreparedStatement login = DBConnect.getConn().prepareStatement(Execute.loginQuery);
         login.setString(1, username.getText());
-        login.setString(2, hashString(password.getText()));
+        login.setString(2, hashString(hashString(password.getText())));
         ResultSet set = login.executeQuery();
         if (set.next()) {
             if ((set.getInt("accType")) == 1) {

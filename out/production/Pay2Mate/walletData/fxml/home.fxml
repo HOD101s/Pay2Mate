@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="621.0" prefWidth="1025.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="walletData.controllers.HomeController">
+    <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2196f3" height="118.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1025.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="366.0" layoutX="440.0" layoutY="145.0" stroke="TRANSPARENT" strokeType="INSIDE" width="551.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="75.0" layoutX="439.0" layoutY="144.0" stroke="TRANSPARENT" strokeType="INSIDE" width="553.0" />
+        <ImageView fitHeight="102.0" fitWidth="96.0" layoutX="29.0" layoutY="11.0" preserveRatio="true">
+            <image>
+                <Image url="@../images/walletlogo.png" />
+            </image>
+        </ImageView>
+        <Label fx:id="homeUser" layoutX="429.0" layoutY="48.0" prefHeight="45.0" prefWidth="193.0" text="Sanket" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="35.0" />
+            </font>
+        </Label>
+        <Label fx:id="publicKey" layoutX="622.0" layoutY="56.0" prefHeight="36.0" prefWidth="153.0" text="123456" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="30.0" />
+            </font>
+        </Label>
+        <Label fx:id="balance" layoutX="850.0" layoutY="56.0" text="10000" textFill="WHITE">
+            <font>
+                <Font size="33.0" />
+            </font>
+        </Label>
+        <Label layoutX="428.0" layoutY="26.0" style="-fx-font-weight: bold;" text="Welcome," textFill="WHITE">
+            <font>
+                <Font size="25.0" />
+            </font>
+        </Label>
+        <Label layoutX="607.0" layoutY="28.0" style="-fx-font-weight: bold; -fx-font-size: 25;" text="Account no." textFill="WHITE">
+            <font>
+                <Font size="22.0" />
+            </font>
+        </Label>
+        <Label layoutX="825.0" layoutY="46.0" prefHeight="75.0" prefWidth="40.0" text="₹" textFill="WHITE">
+            <font>
+                <Font size="44.0" />
+            </font>
+        </Label>
+        <Label layoutX="455.0" layoutY="166.0" text="Transaction ID">
+            <font>
+                <Font name="System Bold" size="25.0" />
+            </font>
+        </Label>
+        <Label layoutX="762.0" layoutY="164.0" text="Receiver">
+            <font>
+                <Font name="System Bold" size="25.0" />
+            </font>
+        </Label>
+        <Label fx:id="trans1" layoutX="440.0" layoutY="234.0" prefHeight="34.0" prefWidth="200.0">
+            <font>
+                <Font size="23.0" />
+            </font>
+        </Label>
+        <Label fx:id="rec1" layoutX="771.0" layoutY="234.0" prefHeight="32.0" prefWidth="87.0">
+            <font>
+                <Font size="22.0" />
+            </font>
+        </Label>
+        <Label fx:id="amt1" layoutX="898.0" layoutY="231.0" prefHeight="32.0" prefWidth="101.0">
+            <font>
+                <Font size="22.0" />
+            </font>
+        </Label>
+        <Label fx:id="trans2" layoutX="440.0" layoutY="295.0" prefHeight="32.0" prefWidth="200.0">
+            <font>
+                <Font size="22.0" />
+            </font>
+        </Label>
+        <Label fx:id="rec2" layoutX="775.0" layoutY="296.0" prefHeight="32.0" prefWidth="87.0">
+            <font>
+                <Font size="22.0" />
+            </font>
+        </Label>
+        <Label fx:id="amt2" layoutX="900.0" layoutY="293.0" prefHeight="32.0" prefWidth="101.0">
+            <font>
+                <Font size="22.0" />
+            </font>
+        </Label>
+        <Label fx:id="trans3" layoutX="440.0" layoutY="356.0" prefHeight="32.0" prefWidth="200.0">
+            <font>
+                <Font size="22.0" />
+            </font>
+        </Label>
+        <Label fx:id="rec3" layoutX="777.0" layoutY="354.0" prefHeight="32.0" prefWidth="87.0">
+            <font>
+                <Font size="22.0" />
+            </font>
+        </Label>
+        <Label fx:id="amt3" layoutX="900.0" layoutY="351.0" prefHeight="32.0" prefWidth="109.0">
+            <font>
+                <Font size="22.0" />
+            </font>
+        </Label>
+        <Label fx:id="trans4" layoutX="440.0" layoutY="405.0" prefHeight="32.0" prefWidth="200.0">
+            <font>
+                <Font size="22.0" />
+            </font>
+        </Label>
+        <Label fx:id="rec4" layoutX="777.0" layoutY="406.0" prefHeight="32.0" prefWidth="87.0">
+            <font>
+                <Font size="22.0" />
+            </font>
+        </Label>
+        <Label fx:id="amt4" layoutX="902.0" layoutY="405.0" prefHeight="32.0" prefWidth="109.0">
+            <font>
+                <Font size="22.0" />
+            </font>
+        </Label>
+        <Label fx:id="trans5" layoutX="440.0" layoutY="466.0" prefHeight="32.0" prefWidth="200.0">
+            <font>
+                <Font size="22.0" />
+            </font>
+        </Label>
+        <Label fx:id="rec5" layoutX="777.0" layoutY="468.0" prefHeight="32.0" prefWidth="87.0">
+            <font>
+                <Font size="22.0" />
+            </font>
+        </Label>
+        <Label fx:id="amt5" layoutX="900.0" layoutY="467.0" prefHeight="32.0" prefWidth="109.0">
+            <font>
+                <Font size="22.0" />
+            </font>
+        </Label>
+        <Line endX="580.0" endY="12.0" layoutX="412.0" layoutY="132.0" startX="28.0" startY="13.5" />
+        <Line endX="580.0" endY="12.0" layoutX="412.0" layoutY="497.0" startX="28.0" startY="14.5" />
+        <Line endX="580.0" endY="12.0" layoutX="412.0" layoutY="439.0" startX="28.0" startY="12.0" />
+        <Line endX="580.0" endY="12.0" layoutX="410.0" layoutY="385.0" startX="30.0" startY="12.0" />
+        <Line endX="580.0" endY="12.0" layoutX="412.0" layoutY="332.0" startX="28.0" startY="12.0" />
+        <Line endX="580.0" endY="12.0" layoutX="410.0" layoutY="270.0" startX="30.0" startY="12.0" />
+        <Line endX="580.0" endY="12.0" layoutX="412.0" layoutY="207.0" startX="28.0" startY="12.0" />
+        <Line endX="72.5" endY="326.0" layoutX="367.0" layoutY="185.0" startX="72.5" startY="-39.0" />
+        <Line endX="822.5" endY="289.5" layoutX="170.0" layoutY="220.0" startX="822.5" startY="-75.5" />
+        <Line endX="336.0" endY="259.5" layoutX="309.0" layoutY="251.0" startX="336.0" startY="-104.5" />
+        <Line endX="336.0" endY="259.5" layoutX="537.0" layoutY="251.0" startX="336.0" startY="-104.79290771484375" />
+        <Label layoutX="884.0" layoutY="164.0" text="Amount">
+            <font>
+                <Font name="System Bold" size="25.0" />
+            </font>
+        </Label>
+      <Line endX="-100.0" endY="361.5" layoutX="852.0" layoutY="148.0" startX="-100.0" startY="-1.79290771484375" />
+      <Label layoutX="669.0" layoutY="164.0" text="Time">
+         <font>
+            <Font name="System Bold" size="28.0" />
+         </font>
+      </Label>
+      <Label layoutX="644.0" layoutY="232.0">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Label fx:id="time2" layoutX="655.0" layoutY="296.0" prefHeight="34.0" prefWidth="87.0">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Label fx:id="time3" layoutX="656.0" layoutY="355.0" prefHeight="34.0" prefWidth="85.0">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Label fx:id="time4" layoutX="656.0" layoutY="409.0" prefHeight="34.0" prefWidth="85.0">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Label fx:id="time5" layoutX="655.0" layoutY="465.0" prefHeight="34.0" prefWidth="87.0">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Label fx:id="time1" layoutX="656.0" layoutY="232.0" prefHeight="34.0" prefWidth="85.0">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Label layoutX="87.0" layoutY="137.0" text="Pay2" textFill="#253b80">
+         <font>
+            <Font name="Verdana Bold Italic" size="47.0" />
+         </font>
+      </Label>
+      <Label layoutX="217.0" layoutY="137.0" text="Mate" textFill="#179bd7">
+         <font>
+            <Font name="Verdana Bold Italic" size="47.0" />
+         </font>
+      </Label>
+      <JFXButton buttonType="RAISED" layoutX="77.0" layoutY="225.0" onAction="#goToSend" prefHeight="77.0" prefWidth="279.0" ripplerFill="WHITE" style="-fx-background-radius: 100; -fx-background-color: #76ff03;" text="Send Money">
+         <font>
+            <Font size="36.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="76.0" layoutY="328.0" onAction="#openRequest" prefHeight="77.0" prefWidth="279.0" ripplerFill="BLACK" style="-fx-background-radius: 100; -fx-background-color: #3d5afe;" text="Add Money" textFill="WHITE">
+         <font>
+            <Font size="36.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="76.0" layoutY="430.0" onAction="#openLogin" prefHeight="77.0" prefWidth="279.0" ripplerFill="BLACK" style="-fx-background-radius: 100; -fx-background-color: #ffea00;" text="Logout">
+         <font>
+            <Font size="36.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <Label layoutX="831.0" layoutY="21.0" style="-fx-font-weight: bold;" text="Balance" textFill="WHITE">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+    </children>
+</AnchorPane>

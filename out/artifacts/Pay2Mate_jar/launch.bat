@@ -1,0 +1,1 @@
+java -jar Pay2Mate.jar

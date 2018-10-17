@@ -3,7 +3,8 @@ package walletData.Query;
 public class Execute {
     public static final String getKey = "SELECT `publickey` FROM `userdata` WHERE `username` = ?";
     public static final String getBal = "SELECT `balance` FROM `userwallet` WHERE `publickey` = ?";
-    public static final String setTable = "SELECT `transid`,`senderpub`,`receiverpub`,`time`,`amount` FROM `userdata` JOIN `transaction` ON `publickey` = `senderpub` WHERE `senderpub`=?";
+//    public static final String setTable = "SELECT `transid`,`senderpub`,`receiverpub`,`time`,`amount` FROM `userdata` JOIN `transaction` ON `publickey` = `senderpub` WHERE `senderpub`=?";
+    public static final String homeTable = "SELECT * FROM `transaction` WHERE `senderpub` = ? || `receiverpub` = ?";
     public static final String loginQuery = "SELECT * FROM `userdata` WHERE `username` = ? && `password` = ?";
     public static final String userExists = "SELECT * FROM `userdata` WHERE username = ?";
     public static final String insertUserData = "INSERT INTO `userdata` (`accType`,`publickey`,`username`,`password`) VALUES (\'0\',?,?,?)";

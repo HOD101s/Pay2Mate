@@ -47,7 +47,6 @@ public class AdminController extends LayOut {
         tpublickey.setCellValueFactory(new PropertyValueFactory<ModelTable, String>("publickey"));
         trequest.setCellValueFactory(new PropertyValueFactory<ModelTable, String>("request"));
         update.setCellValueFactory(new PropertyValueFactory<ModelTable, CheckBox>("update"));
-
         try {
             buildData();
         } catch (SQLException e) {

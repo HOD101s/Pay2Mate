@@ -79,7 +79,7 @@ public class RegisterController extends LayOut{
         PreparedStatement inUserData = DBConnect.getConn().prepareStatement(Execute.insertUserData);
         inUserData.setInt(1,pubkey);
         inUserData.setString(2,username);
-        inUserData.setString(3, hashString(password));
+        inUserData.setString(3, hashString(hashString(password)));
         inUserData.executeUpdate();
 
         PreparedStatement inUserWall = DBConnect.getConn().prepareStatement(Execute.insertUserWallet);

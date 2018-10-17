@@ -1,17 +1,15 @@
 package walletData.controllers;
 
-import com.jfoenix.controls.JFXToggleButton;
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.BooleanBinding;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleIntegerProperty;
+import com.jfoenix.controls.*;
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import walletData.Query.Execute;
 import walletData.Scenes.LayOut;
 import walletData.dbs.DBConnect;
@@ -21,6 +19,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.util.function.Predicate;
 
 public class HomeController extends LayOut {
 
@@ -37,54 +36,50 @@ public class HomeController extends LayOut {
     private Label currency;
 
     @FXML
-    private TableView<HomeTable> hometable;
+    private JFXTextField input;
 
     @FXML
-    private TableColumn<HomeTable, String> transID;
-
-    @FXML
-    private TableColumn<HomeTable, String> date;
-
-    @FXML
-    private TableColumn<HomeTable, String> time;
-
-    @FXML
-    private TableColumn<HomeTable, Integer> sender;
-
-    @FXML
-    private TableColumn<HomeTable, Integer> receiver;
-
-    @FXML
-    private TableColumn<HomeTable, Integer> amount;
+    private JFXTreeTableView<HomeTable> hometable;
 
     @FXML
     private JFXToggleButton usdtoggle;
 
     ObservableList<HomeTable> data;
 
-    int mykey;
-    int bal ;
+    private int bal ;
 
     @FXML
     private void initialize() {
         try {
             homeUser.setText(LoginController.loggeduser);
-            mykey = getkey();                                                 //gets public key
+            int mykey = getkey();                                                 //gets public key
             String key = Integer.toString(mykey);
             publicKey.setText(key);                                                //gets user balance
             bal = Integer.parseInt(getbal(mykey));
             balance.setText(String.valueOf(bal));
-            transID.setCellValueFactory(new PropertyValueFactory<HomeTable, String>("transID"));
-            date.setCellValueFactory(new PropertyValueFactory<HomeTable, String>("date"));
-            time.setCellValueFactory(new PropertyValueFactory<HomeTable, String>("time"));
-            sender.setCellValueFactory(new PropertyValueFactory<HomeTable, Integer>("sender"));
-            receiver.setCellValueFactory(new PropertyValueFactory<HomeTable, Integer>("receiver"));
-            amount.setCellValueFactory(new PropertyValueFactory<HomeTable, Integer>("amount"));
-            buildData();
+
+            JFXTreeTableColumn transID = new JFXTreeTableColumn("Transaction ID");
+            JFXTreeTableColumn date = new JFXTreeTableColumn("Date");
+            JFXTreeTableColumn time = new JFXTreeTableColumn("Time");
+            JFXTreeTableColumn sender = new JFXTreeTableColumn("Sender");
+            JFXTreeTableColumn receiver = new JFXTreeTableColumn("Receiver");
+            JFXTreeTableColumn amount = new JFXTreeTableColumn("Amount");
+            hometable.getColumns().addAll(transID,date,time,sender,receiver,amount);
+
+            transID.setCellValueFactory(new TreeItemPropertyValueFactory<HomeTable, String>("transID"));
+            date.setCellValueFactory(new TreeItemPropertyValueFactory<HomeTable, String>("date"));
+            time.setCellValueFactory(new TreeItemPropertyValueFactory<HomeTable, String>("time"));
+            sender.setCellValueFactory(new TreeItemPropertyValueFactory<HomeTable, Integer>("sender"));
+            receiver.setCellValueFactory(new TreeItemPropertyValueFactory<HomeTable, Integer>("receiver"));
+            amount.setCellValueFactory(new TreeItemPropertyValueFactory<HomeTable, Integer>("amount"));
+            try {
+                buildData(mykey);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
     @FXML
@@ -114,7 +109,7 @@ public class HomeController extends LayOut {
         }
     }
 
-    private void buildData() throws SQLException {
+    private void buildData(int mykey) throws SQLException {
         data = FXCollections.observableArrayList();
         PreparedStatement build = DBConnect.getConn().prepareStatement(Execute.homeTable);
         build.setInt(1,mykey);
@@ -130,8 +125,29 @@ public class HomeController extends LayOut {
             ht.amount.set(rs.getInt("amount"));
             data.add(ht);
         }
-        hometable.setItems(data);
+        TreeItem root = new RecursiveTreeItem<>(data , RecursiveTreeObject::getChildren);
+        hometable.setRoot(root);
+        hometable.setShowRoot(false);
+        addSearchField(input,hometable);
     }
+
+    private void addSearchField(JFXTextField searchTextField, JFXTreeTableView treeTable) {
+        searchTextField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                hometable.setPredicate(new Predicate<TreeItem<HomeTable>>() {
+                    @Override
+                    public boolean test(TreeItem<HomeTable> child) {
+                        Boolean flag = child.getValue().transID.getValue().contains(newValue)
+                                || child.getValue().sender.getValue().toString().contains(newValue)
+                                || child.getValue().receiver.getValue().toString().contains(newValue);
+                        return flag;
+                    }
+                });
+            }
+        });
+    }
+
 
     public static int getkey() throws SQLException {
         PreparedStatement getkey = DBConnect.getConn().prepareStatement(Execute.getKey);

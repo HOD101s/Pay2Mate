@@ -91,12 +91,12 @@
       </Label>
       <TableView fx:id="hometable" layoutX="395.0" layoutY="158.0" prefHeight="401.0" prefWidth="608.0" style="-fx-border-style: 2;" tableMenuButtonVisible="true">
         <columns>
-          <TableColumn fx:id="transID" prefWidth="182.0" text="Transaction ID" />
-          <TableColumn fx:id="date" prefWidth="94.0" text="Date" />
-            <TableColumn fx:id="time" prefWidth="83.0" text="Time" />
+          <TableColumn fx:id="transID" prefWidth="164.0" text="Transaction ID" />
+          <TableColumn fx:id="date" prefWidth="92.0" text="Date" />
+            <TableColumn fx:id="time" prefWidth="84.0" text="Time" />
             <TableColumn fx:id="sender" prefWidth="83.0" text="Sender" />
-            <TableColumn fx:id="receiver" prefWidth="84.0" text="Receiver" />
-            <TableColumn fx:id="amount" prefWidth="81.0" text="Amount" />
+            <TableColumn fx:id="receiver" prefWidth="82.0" text="Receiver" />
+            <TableColumn fx:id="amount" prefWidth="102.0" text="Amount" />
         </columns>
       </TableView>
       <JFXToggleButton fx:id="usdtoggle" layoutX="774.0" layoutY="69.0" onAction="#usdConvert" prefHeight="49.0" prefWidth="232.0" text="Balance in USD" textFill="WHITE" unToggleLineColor="#aeaeae" />

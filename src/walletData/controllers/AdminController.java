@@ -76,6 +76,24 @@ public class AdminController extends LayOut {
         }
     }
 
+    @FXML
+    void adminMoney() {
+        if(verifyAdd(publicKey.getText())) {
+            try {
+                PreparedStatement addMoney = DBConnect.getConn().prepareStatement(Execute.addMoney);
+                addMoney.setInt(1, Integer.parseInt(amount.getText()));
+                addMoney.setInt(2, Integer.parseInt(publicKey.getText()));
+                addMoney.executeUpdate();
+                remOnAdd(publicKey.getText(), amount.getText());
+                status.setText("Transaction Successful.");
+            } catch (SQLException e) {
+                e.printStackTrace();
+                status.setText("Transaction cannot be processed.");
+            }
+        } else
+            status.setText("Invalid Public Key");
+    }
+
     private void remReq(String pkey, String reqamt) {
         try {
             PreparedStatement delReq = DBConnect.getConn().prepareStatement(Execute.delReq);
@@ -122,24 +140,6 @@ public class AdminController extends LayOut {
                 return;
             }
         }
-    }
-
-    @FXML
-    void adminMoney() {
-        if(verifyAdd(publicKey.getText())) {
-            try {
-                PreparedStatement addMoney = DBConnect.getConn().prepareStatement(Execute.addMoney);
-                addMoney.setInt(1, Integer.parseInt(amount.getText()));
-                addMoney.setInt(2, Integer.parseInt(publicKey.getText()));
-                addMoney.executeUpdate();
-                remOnAdd(publicKey.getText(), amount.getText());
-                status.setText("Transaction Successful.");
-            } catch (SQLException e) {
-                e.printStackTrace();
-                status.setText("Transaction cannot be processed.");
-            }
-        } else
-            status.setText("Invalid Public Key");
     }
 
     public void openLogin() throws IOException {

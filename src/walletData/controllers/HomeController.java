@@ -66,6 +66,10 @@ public class HomeController extends LayOut {
             JFXTreeTableColumn amount = new JFXTreeTableColumn("Amount");
             hometable.getColumns().addAll(transID,date,time,sender,receiver,amount);
 
+            transID.setPrefWidth(140.878);
+            sender.setPrefWidth(95.0);
+            receiver.setPrefWidth(95.0);
+
             transID.setCellValueFactory(new TreeItemPropertyValueFactory<HomeTable, String>("transID"));
             date.setCellValueFactory(new TreeItemPropertyValueFactory<HomeTable, String>("date"));
             time.setCellValueFactory(new TreeItemPropertyValueFactory<HomeTable, String>("time"));

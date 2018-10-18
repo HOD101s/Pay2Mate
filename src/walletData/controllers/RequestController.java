@@ -1,5 +1,6 @@
 package walletData.controllers;
 
+
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -32,4 +33,6 @@ public class RequestController extends LayOut{
         adminInsert.executeUpdate();
         status.setText("Successful Request");
     }
+
+
 }

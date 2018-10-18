@@ -95,7 +95,7 @@
          </font>
       </Label>
       <JFXToggleButton fx:id="usdtoggle" layoutX="774.0" layoutY="69.0" onAction="#usdConvert" prefHeight="49.0" prefWidth="232.0" text="Switch currency" textFill="WHITE" unToggleLineColor="#aeaeae" />
-      <JFXTreeTableView fx:id="hometable" layoutX="428.0" layoutY="175.0" prefHeight="400.0" prefWidth="557.0" showRoot="false" tableMenuButtonVisible="true">
+      <JFXTreeTableView fx:id="hometable" layoutX="428.0" layoutY="175.0" prefHeight="400.0" prefWidth="557.0" showRoot="false" stylesheets="@../CSS/TableCSS.css" tableMenuButtonVisible="true">
          <columnResizePolicy>
             <TreeTableView fx:constant="UNCONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>

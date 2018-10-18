@@ -71,7 +71,7 @@ public class HomeController extends LayOut {
             time.setCellValueFactory(new TreeItemPropertyValueFactory<HomeTable, String>("time"));
             sender.setCellValueFactory(new TreeItemPropertyValueFactory<HomeTable, Integer>("sender"));
             receiver.setCellValueFactory(new TreeItemPropertyValueFactory<HomeTable, Integer>("receiver"));
-            amount.setCellValueFactory(new TreeItemPropertyValueFactory<HomeTable, Integer>("amount"));
+            amount.setCellValueFactory(new TreeItemPropertyValueFactory<HomeTable, String>("amount"));
 
             try {
                 buildData(mykey);
@@ -124,9 +124,9 @@ public class HomeController extends LayOut {
             ht.sender.set(rs.getInt("senderpub"));
             ht.receiver.set(rs.getInt("receiverpub"));
             if(rs.getInt("receiverpub")==mykey)
-                ht.amount.set(rs.getInt("amount"));     //Add a plus sign before amount
+                ht.amount.set("+"+String.valueOf(rs.getInt("amount")));     //Add a plus sign before amount
             else
-                ht.amount.set(rs.getInt("amount"));     //Add a negative sign before amount
+                ht.amount.set("-"+String.valueOf(rs.getInt("amount")));     //Add a negative sign before amount
             data.add(ht);
         }
         TreeItem root = new RecursiveTreeItem<>(data , RecursiveTreeObject::getChildren);

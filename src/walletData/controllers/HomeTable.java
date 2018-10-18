@@ -9,9 +9,21 @@ public class HomeTable  extends RecursiveTreeObject<HomeTable> {
     public SimpleStringProperty transID = new SimpleStringProperty();
     public SimpleIntegerProperty sender = new SimpleIntegerProperty();
     public SimpleIntegerProperty receiver = new SimpleIntegerProperty();
-    public SimpleIntegerProperty amount = new SimpleIntegerProperty();
+    public SimpleStringProperty amount = new SimpleStringProperty();
     public SimpleStringProperty time = new SimpleStringProperty();
     public SimpleStringProperty date = new SimpleStringProperty();
+
+    public String getAmount() {
+        return amount.get();
+    }
+
+    public SimpleStringProperty amountProperty() {
+        return amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount.set(amount);
+    }
 
     public String getTransID() {
         return transID.get();
@@ -47,18 +59,6 @@ public class HomeTable  extends RecursiveTreeObject<HomeTable> {
 
     public void setReceiver(int receiver) {
         this.receiver.set(receiver);
-    }
-
-    public int getAmount() {
-        return amount.get();
-    }
-
-    public SimpleIntegerProperty amountProperty() {
-        return amount;
-    }
-
-    public void setAmount(int amount) {
-        this.amount.set(amount);
     }
 
     public String getTime() {

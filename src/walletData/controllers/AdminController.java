@@ -85,7 +85,6 @@ public class AdminController extends LayOut {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
     private void buildData() throws SQLException {
@@ -119,9 +118,10 @@ public class AdminController extends LayOut {
             if (bean.getPublickey().equals(pkey) && bean.getRequest().equals(amt)){
                 remReq(pkey,amt);
                 req.add(bean);
+                data.removeAll(req);
+                return;
             }
         }
-        data.removeAll(req);
     }
 
     @FXML

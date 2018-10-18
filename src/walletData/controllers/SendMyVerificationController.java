@@ -83,4 +83,54 @@ public class SendMyVerificationController extends LayOut{
         else
             return "0";
     }
+
+    @FXML
+    void dial0(ActionEvent event){
+        sendAmount.appendText("0");
+    }
+
+    @FXML
+    void dial1(ActionEvent event){
+        sendAmount.appendText("1");
+    }
+
+    @FXML
+    void dial2(ActionEvent event){
+        sendAmount.appendText("2");
+    }
+
+    @FXML
+    void dial3(ActionEvent event){
+        sendAmount.appendText("3");
+    }
+
+    @FXML
+    void dial4(ActionEvent event){
+        sendAmount.appendText("4");
+    }
+
+    @FXML
+    void dial5(ActionEvent event){
+        sendAmount.appendText("5");
+    }
+
+    @FXML
+    void dial6(ActionEvent event){
+        sendAmount.appendText("6");
+    }
+
+    @FXML
+    void dial7(ActionEvent event){
+        sendAmount.appendText("7");
+    }
+
+    @FXML
+    void dial8(ActionEvent event){
+        sendAmount.appendText("8");
+    }
+
+    @FXML
+    void dial9(ActionEvent event){
+        sendAmount.appendText("9");
+    }
 }

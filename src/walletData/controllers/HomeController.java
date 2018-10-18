@@ -72,6 +72,7 @@ public class HomeController extends LayOut {
             sender.setCellValueFactory(new TreeItemPropertyValueFactory<HomeTable, Integer>("sender"));
             receiver.setCellValueFactory(new TreeItemPropertyValueFactory<HomeTable, Integer>("receiver"));
             amount.setCellValueFactory(new TreeItemPropertyValueFactory<HomeTable, Integer>("amount"));
+
             try {
                 buildData(mykey);
             } catch (SQLException e) {
@@ -100,7 +101,7 @@ public class HomeController extends LayOut {
     @FXML
     void usdConvert(ActionEvent event) throws SQLException {
         if (usdtoggle.isSelected()) {
-            DecimalFormat df = new DecimalFormat("###.###");
+            DecimalFormat df = new DecimalFormat("###.##");
             balance.setText(String.valueOf(df.format(bal / 73.6)));
             currency.setText("$");
         } else {

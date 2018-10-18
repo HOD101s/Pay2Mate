@@ -123,7 +123,10 @@ public class HomeController extends LayOut {
             ht.time.set(rs.getString("time"));
             ht.sender.set(rs.getInt("senderpub"));
             ht.receiver.set(rs.getInt("receiverpub"));
-            ht.amount.set(rs.getInt("amount"));
+            if(rs.getInt("receiverpub")==mykey)
+                ht.amount.set(rs.getInt("amount"));     //Add a plus sign before amount
+            else
+                ht.amount.set(rs.getInt("amount"));     //Add a negative sign before amount
             data.add(ht);
         }
         TreeItem root = new RecursiveTreeItem<>(data , RecursiveTreeObject::getChildren);

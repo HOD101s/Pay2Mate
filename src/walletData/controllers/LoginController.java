@@ -66,10 +66,10 @@ public class LoginController extends LayOut {
         login.setString(2, hashString(hashString(password.getText())));
         ResultSet set = login.executeQuery();
         if (set.next()) {
+            loggeduser = username.getText();
             if ((set.getInt("accType")) == 1) {
                 openAdmin();
             } else {
-                loggeduser = username.getText();
                 status.setText("Logged in !");
                 try {
                     openHome();                             //openHome on login

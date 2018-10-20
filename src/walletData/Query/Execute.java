@@ -24,6 +24,7 @@ public class Execute {
     public static final String adminInsert ="INSERT INTO `adminreq`(`publickey`, `request`) VALUES (?,?)";
     public static final String pubreqinsert = "SELECT * FROM `adminreq`";
     public static final String delReq = "DELETE FROM `adminreq` WHERE `publickey` = ? && `request` = ? LIMIT 1";
+    public static final String getAdminKey = "SELECT `publickey` FROM `userdata` WHERE `accType` = 1 && `username` = ? LIMIT 1";
 
     //setupdbs
     public static final String createTransaction = "CREATE TABLE `pay2mate`.`transaction` ( `transid` VARCHAR(255) NOT NULL ,  `senderpub` INT(255) NOT NULL ,  `receiverpub` INT(255) NOT NULL ,  `amount` INT(11) NOT NULL ,  `time` VARCHAR(255) NOT NULL ,  `date` VARCHAR(255) NOT NULL ) ENGINE = InnoDB";

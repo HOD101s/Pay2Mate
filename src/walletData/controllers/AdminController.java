@@ -9,6 +9,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import walletData.Query.Execute;
 import walletData.Scenes.LayOut;
 import walletData.dbs.DBConnect;
+import walletData.dbs.Transactions;
 
 import java.io.IOException;
 import java.sql.PreparedStatement;
@@ -86,6 +87,7 @@ public class AdminController extends LayOut {
                 addMoney.executeUpdate();
                 remOnAdd(publicKey.getText(), amount.getText());
                 status.setText("Transaction Successful.");
+                TransactionTableInsert();
             } catch (SQLException e) {
                 e.printStackTrace();
                 status.setText("Transaction cannot be processed.");
@@ -93,6 +95,26 @@ public class AdminController extends LayOut {
         } else
             status.setText("Invalid Public Key");
     }
+
+    private void TransactionTableInsert() throws SQLException {
+        PreparedStatement transTable = DBConnect.getConn().prepareStatement(Execute.transTableInsert);
+        transTable.setString(1, Transactions.genTransID());
+        transTable.setString(2,getAdminKey());;
+        transTable.setInt(3,Integer.parseInt(publicKey.getText()));
+        transTable.setInt(4,Integer.parseInt(amount.getText()));
+        transTable.setString(5,Transactions.getTime());
+        transTable.setString(6,Transactions.getDate());
+        transTable.executeUpdate();
+    }
+
+    private String getAdminKey() throws SQLException{
+        PreparedStatement adminKey = DBConnect.getConn().prepareStatement(Execute.getAdminKey);
+        adminKey.setString(1,LoginController.loggeduser);
+        ResultSet rs = adminKey.executeQuery();
+        rs.next();
+        return (rs.getString("publickey"));
+    }
+
 
     private void remReq(String pkey, String reqamt) {
         try {

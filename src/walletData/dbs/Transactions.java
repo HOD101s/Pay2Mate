@@ -60,7 +60,6 @@ public class Transactions {
         remMoney.setInt(1,userBalance - sendamount);
         remMoney.setInt(2,senderprivatekey);
         return (remMoney.executeUpdate()>0);
-//        return (DBConnect.getStatement().executeUpdate(String.format(Execute.removeMoney,userBalance - sendamount, senderprivatekey)) > 0);
     }
 
     public static boolean addMoney() throws SQLException {

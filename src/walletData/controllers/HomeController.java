@@ -39,14 +39,21 @@ public class HomeController extends LayOut {
     private JFXTextField input;
 
     @FXML
-    private JFXTreeTableView<HomeTable> hometable;
+    private JFXTreeTableView<HomeTable> reciverTable;
 
     @FXML
     private JFXToggleButton usdtoggle;
 
-    ObservableList<HomeTable> data;
+    @FXML
+    private JFXTreeTableView<HomeTableSend> senderTable;
 
-    private int bal ;
+    @FXML
+    private JFXTextField sendSearch;
+
+    ObservableList<HomeTable> data;
+    ObservableList<HomeTableSend> sendData;
+
+    private int bal;
 
     @FXML
     private void initialize() {
@@ -64,11 +71,30 @@ public class HomeController extends LayOut {
             JFXTreeTableColumn sender = new JFXTreeTableColumn("Sender");
             JFXTreeTableColumn receiver = new JFXTreeTableColumn("Receiver");
             JFXTreeTableColumn amount = new JFXTreeTableColumn("Amount");
-            hometable.getColumns().addAll(transID,date,time,sender,receiver,amount);
+            reciverTable.getColumns().addAll(transID, date, time, sender, receiver, amount);
+
+            JFXTreeTableColumn transIDsend = new JFXTreeTableColumn("Transaction ID");
+            JFXTreeTableColumn datesend = new JFXTreeTableColumn("Date");
+            JFXTreeTableColumn timesend = new JFXTreeTableColumn("Time");
+            JFXTreeTableColumn sendersend = new JFXTreeTableColumn("Sender");
+            JFXTreeTableColumn receiversend = new JFXTreeTableColumn("Receiver");
+            JFXTreeTableColumn amountsend = new JFXTreeTableColumn("Amount");
+            senderTable.getColumns().addAll(transIDsend, datesend, timesend, sendersend, receiversend, amountsend);
 
             transID.setPrefWidth(140.878);
             sender.setPrefWidth(95.0);
             receiver.setPrefWidth(95.0);
+
+            transIDsend.setPrefWidth(140.878);
+            sendersend.setPrefWidth(95.0);
+            receiversend.setPrefWidth(95.0);
+
+            transIDsend.setCellValueFactory(new TreeItemPropertyValueFactory<HomeTableSend, String>("transIDsend"));
+            datesend.setCellValueFactory(new TreeItemPropertyValueFactory<HomeTableSend, String>("datesend"));
+            timesend.setCellValueFactory(new TreeItemPropertyValueFactory<HomeTableSend, String>("timesend"));
+            sendersend.setCellValueFactory(new TreeItemPropertyValueFactory<HomeTableSend, Integer>("sendersend"));
+            receiversend.setCellValueFactory(new TreeItemPropertyValueFactory<HomeTableSend, Integer>("receiversend"));
+            amountsend.setCellValueFactory(new TreeItemPropertyValueFactory<HomeTableSend, String>("amountsend"));
 
             transID.setCellValueFactory(new TreeItemPropertyValueFactory<HomeTable, String>("transID"));
             date.setCellValueFactory(new TreeItemPropertyValueFactory<HomeTable, String>("date"));
@@ -77,11 +103,9 @@ public class HomeController extends LayOut {
             receiver.setCellValueFactory(new TreeItemPropertyValueFactory<HomeTable, Integer>("receiver"));
             amount.setCellValueFactory(new TreeItemPropertyValueFactory<HomeTable, String>("amount"));
 
-            try {
-                buildData(mykey);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            buildDataReciver(mykey);
+            buildDataSender(mykey);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -98,7 +122,7 @@ public class HomeController extends LayOut {
     }
 
     @FXML
-    private void openRequest() throws IOException{
+    private void openRequest() throws IOException {
         myrequest();
     }
 
@@ -114,11 +138,10 @@ public class HomeController extends LayOut {
         }
     }
 
-    private void buildData(int mykey) throws SQLException {
+    private void buildDataReciver(int mykey) throws SQLException {
         data = FXCollections.observableArrayList();
-        PreparedStatement build = DBConnect.getConn().prepareStatement(Execute.homeTable);
-        build.setInt(1,mykey);
-        build.setInt(2,mykey);
+        PreparedStatement build = DBConnect.getConn().prepareStatement(Execute.homeTableReceive);
+        build.setInt(1, mykey);
         ResultSet rs = build.executeQuery();
         while (rs.next()) {
             HomeTable ht = new HomeTable();
@@ -127,23 +150,47 @@ public class HomeController extends LayOut {
             ht.time.set(rs.getString("time"));
             ht.sender.set(rs.getInt("senderpub"));
             ht.receiver.set(rs.getInt("receiverpub"));
-            if(rs.getInt("receiverpub")==mykey)
-                ht.amount.set("+"+String.valueOf(rs.getInt("amount")));     //Add a plus sign before amount
+            if (rs.getInt("receiverpub") == mykey)
+                ht.amount.set("+" + String.valueOf(rs.getInt("amount")));     //Add a plus sign before amount
             else
-                ht.amount.set("-"+String.valueOf(rs.getInt("amount")));     //Add a negative sign before amount
+                ht.amount.set("-" + String.valueOf(rs.getInt("amount")));     //Add a negative sign before amount
             data.add(ht);
         }
-        TreeItem root = new RecursiveTreeItem<>(data , RecursiveTreeObject::getChildren);
-        hometable.setRoot(root);
-        hometable.setShowRoot(false);
-        addSearchField(input,hometable);
+        TreeItem root = new RecursiveTreeItem<>(data, RecursiveTreeObject::getChildren);
+        reciverTable.setRoot(root);
+        reciverTable.setShowRoot(false);
+        addSearchFieldReceiver(input, reciverTable);
     }
 
-    private void addSearchField(JFXTextField searchTextField, JFXTreeTableView treeTable) {
+    private void buildDataSender(int mykey) throws SQLException {
+        sendData = FXCollections.observableArrayList();
+        PreparedStatement build = DBConnect.getConn().prepareStatement(Execute.homeTableSend) ;
+        build.setInt(1, mykey);
+        ResultSet rs = build.executeQuery();
+        while (rs.next()) {
+            HomeTableSend hts = new HomeTableSend();
+            hts.transIDsend.set(rs.getString("transID"));
+            hts.datesend.set(rs.getString("date"));
+            hts.timesend.set(rs.getString("time"));
+            hts.sendersend.set(rs.getInt("senderpub"));
+            hts.receiversend.set(rs.getInt("receiverpub"));
+            if (rs.getInt("receiverpub") == mykey)
+                hts.amountsend.set("+" + String.valueOf(rs.getInt("amount")));     //Add a plus sign before amount
+            else
+                hts.amountsend.set("-" + String.valueOf(rs.getInt("amount")));     //Add a negative sign before amount
+            sendData.add(hts);
+        }
+        TreeItem sendroot = new RecursiveTreeItem<>(sendData, RecursiveTreeObject::getChildren);
+        senderTable.setRoot(sendroot);
+        senderTable.setShowRoot(false);
+        addSearchFieldSend(sendSearch, senderTable);
+    }
+
+    private void addSearchFieldReceiver(JFXTextField searchTextField, JFXTreeTableView treeTable) {
         searchTextField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                hometable.setPredicate(new Predicate<TreeItem<HomeTable>>() {
+                treeTable.setPredicate(new Predicate<TreeItem<HomeTable>>() {
                     @Override
                     public boolean test(TreeItem<HomeTable> child) {
                         Boolean flag = child.getValue().transID.getValue().contains(newValue)
@@ -156,10 +203,27 @@ public class HomeController extends LayOut {
         });
     }
 
+    private void addSearchFieldSend(JFXTextField searchTextField, JFXTreeTableView treeTable) {
+        searchTextField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                senderTable.setPredicate(new Predicate<TreeItem<HomeTableSend>>() {
+                    @Override
+                    public boolean test(TreeItem<HomeTableSend> child) {
+                        Boolean flag = child.getValue().transIDsend.getValue().contains(newValue)
+                                || child.getValue().sendersend.getValue().toString().contains(newValue)
+                                || child.getValue().receiversend.getValue().toString().contains(newValue);
+                        return flag;
+                    }
+                });
+            }
+        });
+    }
+
 
     public static int getkey() throws SQLException {
         PreparedStatement getkey = DBConnect.getConn().prepareStatement(Execute.getKey);
-        getkey.setString(1,LoginController.loggeduser);
+        getkey.setString(1, LoginController.loggeduser);
         ResultSet set = getkey.executeQuery();
         if (set.next())
             return set.getInt("publickey");
@@ -168,7 +232,7 @@ public class HomeController extends LayOut {
 
     private String getbal(int mykey) throws SQLException {
         PreparedStatement getkey = DBConnect.getConn().prepareStatement(Execute.getBal);
-        getkey.setInt(1,mykey);
+        getkey.setInt(1, mykey);
         ResultSet mysetbal = getkey.executeQuery();
         if (mysetbal.next())
             return mysetbal.getString("balance");

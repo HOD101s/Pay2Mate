@@ -4,7 +4,7 @@ import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class HomeTable  extends RecursiveTreeObject<HomeTable> {
+public class HomeTable extends RecursiveTreeObject<HomeTable> {
 
     public SimpleStringProperty transID = new SimpleStringProperty();
     public SimpleIntegerProperty sender = new SimpleIntegerProperty();

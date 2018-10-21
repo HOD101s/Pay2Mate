@@ -81,7 +81,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="76.0" layoutY="430.0" onAction="#openLogin" prefHeight="77.0" prefWidth="279.0" ripplerFill="BLACK" style="-fx-background-radius: 100; -fx-background-color: #ffea00;" text="Logout">
+        <JFXButton buttonType="RAISED" layoutX="76.0" layoutY="430.0" onAction="#openLogin" prefHeight="77.0" prefWidth="279.0" ripplerFill="BLACK" style="-fx-background-radius: 100; -fx-background-color: #ffea00;" text="Logout">
          <font>
             <Font size="36.0" />
          </font>
@@ -95,11 +95,19 @@
          </font>
       </Label>
       <JFXToggleButton fx:id="usdtoggle" layoutX="774.0" layoutY="69.0" onAction="#usdConvert" prefHeight="49.0" prefWidth="232.0" text="Switch currency" textFill="WHITE" unToggleLineColor="#aeaeae" />
-      <JFXTreeTableView fx:id="hometable" layoutX="428.0" layoutY="175.0" prefHeight="400.0" prefWidth="557.0" showRoot="false" stylesheets="@../CSS/TableCSS.css" tableMenuButtonVisible="true">
+      <JFXTreeTableView fx:id="reciverTable" layoutX="428.0" layoutY="175.0" prefHeight="163.0" prefWidth="557.0" showRoot="false" stylesheets="@../CSS/TableCSS.css" tableMenuButtonVisible="true">
          <columnResizePolicy>
             <TreeTableView fx:constant="UNCONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </JFXTreeTableView>
       <JFXTextField fx:id="input" layoutX="814.0" layoutY="137.0" promptText=" Search " />
+      <JFXTreeTableView fx:id="senderTable" layoutX="428.0" layoutY="377.0" prefHeight="163.0" prefWidth="557.0" showRoot="false" stylesheets="@../CSS/TableCSS.css" tableMenuButtonVisible="true">
+         <columnResizePolicy>
+            <TreeTableView fx:constant="UNCONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </JFXTreeTableView>
+      <Label layoutX="469.0" layoutY="142.0" text="Received" />
+      <Label layoutX="484.0" layoutY="346.0" text="Sent" />
+      <JFXTextField fx:id="sendSearch" layoutX="814.0" layoutY="341.0" promptText=" Search " />
     </children>
 </AnchorPane>

@@ -41,6 +41,7 @@ public class AdminController extends LayOut {
     @FXML
     private TableColumn<ModelTable, CheckBox> update;
 
+
     ObservableList<ModelTable> data;
 
     @FXML

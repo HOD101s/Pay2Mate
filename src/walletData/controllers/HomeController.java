@@ -151,9 +151,9 @@ public class HomeController extends LayOut {
             ht.sender.set(rs.getInt("senderpub"));
             ht.receiver.set(rs.getInt("receiverpub"));
             if (rs.getInt("receiverpub") == mykey)
-                ht.amount.set("+" + String.valueOf(rs.getInt("amount")));     //Add a plus sign before amount
+                ht.amount.set(" +" + " ₹ " + rs.getInt("amount"));     //Add a plus sign before amount
             else
-                ht.amount.set("-" + String.valueOf(rs.getInt("amount")));     //Add a negative sign before amount
+                ht.amount.set(" -" + " ₹ " + rs.getInt("amount"));     //Add a negative sign before amount
             data.add(ht);
         }
         TreeItem root = new RecursiveTreeItem<>(data, RecursiveTreeObject::getChildren);
@@ -175,9 +175,9 @@ public class HomeController extends LayOut {
             hts.sendersend.set(rs.getInt("senderpub"));
             hts.receiversend.set(rs.getInt("receiverpub"));
             if (rs.getInt("receiverpub") == mykey)
-                hts.amountsend.set("+" + String.valueOf(rs.getInt("amount")));     //Add a plus sign before amount
+                hts.amountsend.set(" +" + " ₹ " + rs.getInt("amount"));     //Add a plus sign before amount
             else
-                hts.amountsend.set("-" + String.valueOf(rs.getInt("amount")));     //Add a negative sign before amount
+                hts.amountsend.set(" -" + " ₹ " + rs.getInt("amount"));     //Add a negative sign before amount
             sendData.add(hts);
         }
         TreeItem sendroot = new RecursiveTreeItem<>(sendData, RecursiveTreeObject::getChildren);

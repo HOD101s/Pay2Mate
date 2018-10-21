@@ -1,6 +1,10 @@
 .tree-table-view{
-    -fx-tree-table-color: rgba(0, 150, 0, 0.8);
+    -fx-tree-table-color: rgba(255, 0, 0, 0.8);
     -fx-tree-table-rippler-color : rgba(255, 0, 0, 0.9);
+    -fx-background-color: -fx-tree-table-color,-fx-box-border,-fx-control-inner-background;
+    -fx-background-insets: -1.4, 0, 1;
+    -fx-background-radius: 1.4, 0, 0;
+    -fx-padding: 1; /* 0.083333em; */
 }
 .tree-table-view:focused .tree-table-row-cell:selected {
     -fx-background-color: -fx-tree-table-color  ;
@@ -31,7 +35,7 @@
     -fx-padding : 16 0 16 0 ;
 }
 
-.tree-table-view .column-header .arrow, .tree-table-view .column-header .sort-order-dot{ 
+.tree-table-view .column-header .arrow, .tree-table-view .column-header .sort-order-dot{
     -fx-background-color : #949494;
 }
 

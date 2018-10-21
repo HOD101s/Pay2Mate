@@ -34,5 +34,5 @@ public class Execute {
     public static final String doesPay2MateExist = "show databases like 'pay2mate'";
     public static final String usePay2 = "USE pay2mate";
     public static final String adminReq = "CREATE TABLE `pay2mate`.`adminreq` ( `requestID` INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT ,`publickey` VARCHAR(255) NOT NULL , `request` VARCHAR(255) NOT NULL ) ENGINE = InnoDB";
-    public static final String admin = "INSERT INTO `userdata` (`accType`, `publickey`, `username`, `password`) VALUES (\'1\', \'000000\', \'admin\', \'b4402e4c8d7c08b508f1bf77ae62b9c4\')";
+    public static final String admin = "INSERT INTO `userdata` (`accType`, `publickey`, `username`, `password`) VALUES (\'1\', \'000001\', \'admin\', \'b4402e4c8d7c08b508f1bf77ae62b9c4\')";
 }
